@@ -1,0 +1,62 @@
+<div class="form-container position-absolute" [class.d-none]="toShow">
+    <form class="d-flex flex-column input-form" #form="ngForm" (ngSubmit)="addEmployee(form)">
+        <header id="heading">Add Employee</header>
+        <span class="d-flex input-fields">
+            <input type="text" #fstName="ngModel" required [class.is-invalid]="fstName.invalid && fstName.touched"
+                placeholder="FirstName" id="firstName" [(ngModel)]="firstName" name="firstname"><i
+                class="bi bi-pencil"></i>
+        </span>
+        <div class="error text-danger " [class.d-none]="fstName.valid || fstName.untouched">Enter Your First Name </div>
+
+        <span class="d-flex input-fields"><input required [class.is-invalid]="lstName.invalid && lstName.touched"
+                type="text" #lstName="ngModel" [(ngModel)]="lastName" placeholder="LastName" id="lastName"
+                name="lastName"><i class="bi bi-pencil"></i></span>
+        <div class="error text-danger " [class.d-none]="lstName.valid || lstName.untouched">Enter Your Last Name</div>
+
+        <span class="d-flex input-fields"><input type="text" [(ngModel)]="preferredName" placeholder="PreferredName"
+                id="preferredName" name="preferredName" disabled><i class="bi bi-pencil"></i></span>
+
+        <span class="d-flex input-fields">
+            <input required [class.is-invalid]="emailField.invalid && emailField.touched" type="email"
+                #emailField="ngModel" [(ngModel)]="email" placeholder="Email" id="email" name="email">
+            <i class="bi bi-pencil"></i>
+        </span>
+        <div class="error text-danger " [class.d-none]="emailField.valid || emailField.untouched">Enter Your Email</div>
+
+        <span class="d-flex input-fields "><input required pattern="^\d{10}$" [class.is-invalid]="phnNumber.invalid && phnNumber.touched"
+                type="tel" #phnNumber="ngModel" [(ngModel)]="phoneNumber" placeholder="PhoneNumber" id="phoneNumber"
+                name="phoneNumber"><i class="bi bi-pencil"></i></span>
+        <div *ngIf="phnNumber.errors && (phnNumber.invalid && phnNumber.touched)">
+            <div class="error text-danger" *ngIf="phnNumber.errors['required']">Enter Your PhoneNumber</div>
+            <div class="error text-danger" *ngIf="phnNumber.errors['pattern']">Phone Number Must Be of 10 Digits</div>
+        </div>
+        
+
+        <span class="d-flex input-fields"><select required [class.is-invalid]="dptName.invalid && dptName.touched"
+                name="dept" id="dept" #dptName="ngModel" [(ngModel)]="dept">
+                <option value="{{dept}}" *ngFor="let dept of departements" [selected]='dept=="IT"'>{{dept}}</option>
+            </select><i class="bi bi-pencil"></i></span>
+        <div class="error text-danger " [class.d-none]="dptName.valid || dptName.untouched">Please Select Your
+            Departement</div>
+
+        <span class="d-flex input-fields"><select required [class.is-invalid]="officeName.invalid && officeName.touched"
+                name="office" #officeName="ngModel" [(ngModel)]="office" id="offices">
+                <option value="{{office}}" *ngFor="let office of offices" [attr.selected]="office=='Seattle'">{{office}}
+                </option>
+            </select><i class="bi bi-pencil"></i></span>
+        <div class="error text-danger " [class.d-none]="officeName.valid || officeName.untouched">Please Select You
+            Office</div>
+
+        <span class="d-flex input-fields"><select required [class.is-invalid]="jbTitle.invalid && jbTitle.touched"
+                name="jobTitle" #jbTitle="ngModel" [(ngModel)]="jobTitle" id="jobTitles">
+                <option value="{{title}}" *ngFor="let title of jobTitles" [selected]='title=="BI Developer"'>{{title}}
+                </option>
+            </select><i class="bi bi-pencil"></i></span>
+        <div class="error text-danger " [class.d-none]="jbTitle.valid || jbTitle.untouched">Please Select Your Job Title
+        </div>
+
+        <button class="btn btn-success d-flex justify-content-center" [disabled]="form.form.invalid" type="submit">Add Employee</button>
+        <button class="btn btn-danger  d-flex justify-content-center" type="button" (click)="cancel()">Cancel</button>
+
+    </form>
+</div>

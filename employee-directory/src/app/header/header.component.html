@@ -1,0 +1,27 @@
+<section *ngIf="!isMobileResolution">
+    <div class="header-section d-flex">
+        <div class="logo d-flex">
+            <img id="company-logo" src="assets/data/saketa-logo.png" alt="" (click)="loadPage()">
+        </div>
+        <div class="directory">
+            <span id="empDirectory" class="d-block"  >Employee Directory</span>
+            <span id="empSlogan">The Ultimate People Directory Experience</span>
+        </div>
+        <div class="user-details d-flex">
+            <span id="empUsername"><span id="greeting">Welcome,</span> Andrew Philips</span>
+        </div>
+        <div class="user-image-container d-flex">
+            <img src="assets/data/user.png" alt="user-image" class="user-image ">
+        </div>
+    </div>
+    <hr>
+</section>
+<div class="row">
+    <div class="col-3">
+        <app-drawer (giveDetails)="empDetails($event)"></app-drawer> 
+    </div>
+    <div class="col-9">
+        <app-filters [empToShow]="getEmpDetails"></app-filters>
+    </div>
+</div>
+

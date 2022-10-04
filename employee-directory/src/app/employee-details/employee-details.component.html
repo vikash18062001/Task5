@@ -1,0 +1,5 @@
+<div class="employee-container d-flex" >
+    <div  *ngFor="let emp of Employee" >
+        <app-employee-detail-template [empDetail]="emp" (formDet)="formEmpDetail($event)"></app-employee-detail-template>
+    </div>
+</div>

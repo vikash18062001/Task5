@@ -1,0 +1,82 @@
+#dept,#offices,#jobTitles
+{
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 3% 1%;
+}
+p{
+    margin:1% 2%;
+    font-size: 0.9rem;
+    font-weight: 200;
+    cursor: pointer;
+
+}
+#greeting
+{
+    font-size: 150%;
+    line-height: 140%;
+    flex: 1 0 auto;
+    
+}
+#profile-img
+{
+    width: 24%;
+    padding-right: 3%;
+}
+#welcome
+{
+    color: #00B3F8;
+    font-size: 120%;
+    margin:0;
+    padding: 0;
+}
+#logo
+{
+    width: 50%;
+    margin-top: auto;
+    align-items: center;
+}
+.text
+{
+    color: #00B3F8;
+    margin-top: 2%;
+    font-weight: 300;
+}
+footer{
+    margin-top: auto;
+    margin-bottom: 2%;
+    align-items: center;
+}
+@media only screen and (max-width:768px) {
+    .sidenav-bar
+    {
+        height: 100%;
+        width: 100vw;
+        position: fixed;
+        transition: all 1s ease;
+        overflow: scroll;
+    } 
+    .nav-items
+    {
+        padding-left: 4%;
+        height: 100%;
+        width: 65%;
+        background-color: white;
+    }
+    .bi
+    {
+        color: red;
+    }
+    .visible
+    {
+        width: 100vw;
+        background-color: rgba(0,0,0,0.3);
+        transition: all 1s ease;
+    }
+    #dept,#offices,#jobTitles
+    {
+        margin-top: 12%;
+    }
+    
+    
+}

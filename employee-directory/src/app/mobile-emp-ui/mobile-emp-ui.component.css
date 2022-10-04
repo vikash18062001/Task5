@@ -1,0 +1,57 @@
+.header
+{
+    align-items: center;
+}
+.search-bar
+{
+    flex: 1 0 auto;
+    padding: 0 3%;
+}
+.bi-list,.bi-filter{
+font-size: 200%;
+}
+.bi-search
+{
+    position: absolute;
+    left:5%;
+    top: 3px;
+    box-sizing: border-box;
+}
+input{
+    border: 1px solid rgb(212,212,212);
+}
+input::content
+{
+    font-weight: 300;
+    color: rgb(212,212,212);
+    padding-left:27%;
+}
+.search-input
+{
+    width: 100%;
+}
+hr
+{
+    margin: 0;
+}
+.btn
+{
+    justify-content: end;
+}
+.add-emp
+{
+    background-color: rgb(95, 173, 237);
+    color: white;
+}
+.char
+{
+    font-size: 80%;
+}
+.char:hover{
+    color: rgb(14, 203, 241);
+    cursor: pointer;
+}
+.filter-by
+{
+    
+}

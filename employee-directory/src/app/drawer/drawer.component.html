@@ -1,0 +1,23 @@
+<i class="bi bi-list" *ngIf="isMobileResolution" [class.d-none]="isVisible" (click)="show()" ></i>
+<div  class="sidenav-bar " [class.visible]="isVisible" [ngStyle]="{'left.px':left}" (click)="show()">
+    <div class="nav-items d-flex flex-column">
+        <div class="user-name d-flex" *ngIf="isMobileResolution">
+            <span id="greeting"><p id="welcome">Welcome,</p> Andrew Philips</span>
+            <img src="assets/data/user.png" id="profile-img">
+        </div>
+        <p id="dept">Departements</p>
+            <p (click)="filter(component,'dept')"*ngFor ="let component of departements">{{component}} ({{freqMap.get(component)}})</p>
+        <p id="offices">Offices</p>
+        <div class="offices">
+            <p (click)="filter(component,'office')" *ngFor="let component of offices" >{{component}} ({{freqMap.get(component)}})</p>
+        </div>
+        <p id="jobTitles">Job Titles</p>
+        <div class="job-titles">
+            <p (click)="filter(component,'jobTitle')" *ngFor = "let component of jobTitles">{{component}} ({{freqMap.get(component)}})</p>
+        </div>
+        <footer class="footer d-flex flex-column " *ngIf="isMobileResolution">
+            <img src="assets/data/saketa-logo.png" id="logo"  >
+            <p class="text">Employee Directory</p>
+        </footer>
+    </div>
+</div>

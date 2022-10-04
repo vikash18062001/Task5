@@ -1,0 +1,56 @@
+section
+{
+    margin:2% 0%;
+}
+.header-section
+{
+    width:100%;
+    align-items: end;
+}
+.logo
+{
+    flex:1 0 17%;
+    cursor: pointer;
+}
+#company-logo
+{
+width: 100%;
+}
+.directory
+{
+    padding: 0% 2%;
+    flex: 1 0 50%;
+}
+#empSlogan
+{
+    font-size:16px;
+    font-weight: 200;
+}
+#empDirectory
+{
+    font-size: 40px;
+    color:rgb(54,195,250);
+    font-weight:200;
+}
+#empUsername
+{
+    font-size: 30px;
+}
+#greeting
+{
+    font-size: 30px;
+    color:rgb(54,195,250);
+    font-weight: 200;
+}
+
+.user-details
+{
+    flex: 1 0 27%;
+    align-items: flex-end;
+    justify-content: end;
+}
+.user-image
+{
+    flex:0 0 100%;
+    width: 3%;
+}

@@ -1,0 +1,75 @@
+.firstname-container
+{
+    
+    width: 10%;
+    background-color:rgb(0,179,248);
+    margin: 0 2px;
+    text-align: center;
+    vertical-align: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 35px;
+    color: white;
+}
+.search-bar
+{
+    flex: 0 0 40%;
+    
+}
+.search-bar>label{
+    padding-right:2%;
+}
+.search-bar>input
+{
+    padding: 0.8% 8%;
+    font-weight: 200;
+
+}
+.bi-search
+{
+  padding:0.4% 0.6%;
+}
+.clear-btn
+{
+    background-color: rgba(103,186,45,0.8);
+    padding:0 2%;
+}
+.lower-half-filters
+{
+    margin:2% 0%;
+}
+.filter-by
+{
+    flex: 1 0 auto;
+    margin-left: 2%;
+}
+.clear-btn{
+    margin: 0 1%;
+}
+#filtersDropDown
+{
+    padding: 1.5% 2%;
+    font-weight: 200;
+}
+.filter-by>label{
+    padding-right:3%;
+}
+.add-employee
+{
+    background-color: rgb(0,179,248);
+    border:1px solid grey;
+    color:white;
+    font-weight: bold;
+    padding:0 1%;
+}
+.note-container>p
+{
+    font-size: 80%;
+}
+#note
+{
+    font-weight:bold;
+}
+.filters div{
+    cursor:pointer;
+}

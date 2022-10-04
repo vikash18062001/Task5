@@ -1,0 +1,22 @@
+.emp-template 
+{
+    margin:4% 8%;
+    padding: 2% 2%;
+    background-color: rgb(194, 243, 246,0.3);
+}
+#user-image
+{
+    width: 20%;
+}
+.user-name
+{
+    width: 100%;
+    font-size: large;
+    align-self: center;
+    padding-left: 10%;
+    font-weight: 300;
+}
+.bi-three-dots-vertical
+{
+    justify-content: end;
+}

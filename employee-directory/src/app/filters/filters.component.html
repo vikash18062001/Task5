@@ -1,0 +1,28 @@
+<div class="upper-half-filters" *ngIf="!isMobileResolution">
+    <div class="filters d-flex">
+        <div (click)="filter(char,'preferredName')" *ngFor="let char of filtersByName" class="firstname-container d-flex">
+            {{char}}
+        </div>
+    </div>
+</div>
+<div class="lower-half-filters d-flex">
+    <div class="search-bar ">
+        <label for="search">Search</label><span><i class="bi bi-search position-absolute"></i></span>
+        <input type="text" placeholder="Enter any Keyword"  id="search" [(ngModel)]="searchKeyWord" name="searchKeyword" (ngModelChange)="onChange()">
+    </div>
+    <button class="clear-btn" (click)="clear()">Clear</button>
+    <div class="filter-by d-flex align-items-center">
+        <label for="filters-by" class="">Filter by:</label>
+        <select name="filters" id="filtersDropDown" [(ngModel)]="selectedFilter" (ngModelChange)="onFilterChange()">
+            <option value="{{filters}}" *ngFor="let filters of filtersName">{{filters}}</option>
+        </select>
+    </div>
+    <button class="add-employee" (click)="addEmployee()">Add Employee</button>
+</div>
+<div class="note-container">
+    <p><span id="note">Note:</span> Please use the advanced filter options to refine your results.</p>
+</div>
+
+<app-employee-details [Employee]="empToShow" (EmpDetail)="sendFormData($event)"></app-employee-details>
+<app-form-template *ngIf="toShow" (newEmpRegister)="newEmpRegister()" [detail]="formDetail()" ></app-form-template>
+ 

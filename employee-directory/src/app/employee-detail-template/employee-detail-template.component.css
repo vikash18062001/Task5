@@ -1,0 +1,30 @@
+p{
+    margin:0;
+}
+.emp-details-container
+{
+    /* width: 100%; */
+    height: 110px;
+    background-color: rgb(233,233,233);
+    max-width: 250px;
+    min-width: 254px;
+    margin: 1% 3px;
+    
+}
+.footer-icons>i
+{
+    padding: 0 1%;
+    font-size: 80%;
+}
+#preferName
+{
+    font-size: 90%;
+    font-weight: 400;
+    
+}
+#jobTitle,#departement
+{
+    font-size: 70%;
+    font-weight: 300;
+    color:rgba(73, 73, 73, 0.571)
+}
