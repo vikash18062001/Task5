@@ -6,8 +6,8 @@
         </div>
         <i class="bi bi-filter" (click)="showfilter()"></i>
     </header>
-    <div class="filter-by d-flex align-items-center">
-        <label for="filters-by" class="">Filter by:</label>
+    <div *ngIf="showFilter" class="filter-by d-flex align-items-center justify-content-end">
+        <label for="filters-by" class="text">Filter by:</label>
         <select name="filters" id="filtersDropDown" [(ngModel)]="selectedFilter" (ngModelChange)="onFilterChange()">
             <option value="{{filters}}" *ngFor="let filters of dropDownFilter">{{filters}}</option>
         </select>
