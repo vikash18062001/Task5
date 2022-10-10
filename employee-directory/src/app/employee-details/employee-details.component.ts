@@ -21,7 +21,7 @@ export class EmployeeDetailsComponent implements OnInit {
   formEmpDetail(empDetail:any)
   {
     this.EmpDetail.emit(empDetail);
-  }
+  } 
 
   
   

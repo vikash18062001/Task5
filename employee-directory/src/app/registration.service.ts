@@ -150,5 +150,19 @@ export class RegistrationService {
     this.initializeCountNode();
     this.countFreq();
   }
+  deleteAnEmployee(emp:any)
+  {
+    var empDetail = this.getAllEmployee();
+    var y = empDetail.filter((x:any)=>{
+      if(emp.preferredName === x.preferredName)
+        return false;
+      else
+        return true;
+    })
+    console.log(y);
+    localStorage.setItem('employee',JSON.stringify(y));
+    this.initializeCountNode();
+    this.countFreq();
+  }
 
 }

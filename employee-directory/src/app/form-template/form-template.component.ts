@@ -26,6 +26,7 @@ export class FormTemplateComponent implements OnInit {
   departements:any;
   offices:any;
   jobTitles:any;
+  skypeId:any;
 
   constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) { }
   toShow=true;
@@ -38,9 +39,13 @@ export class FormTemplateComponent implements OnInit {
     this.departements = this._empService.getDepartements();
     this.offices = this._empService.getOffices();
     this.jobTitles = this._empService.getJobTitles();
+    
+    
+  }
+  ngOnChanges()
+  {
     this.toShow = (!this.toShow);
     this.initializeForm();
-    
   }
   
   addEmployee(form: { value: any; })
@@ -70,6 +75,7 @@ export class FormTemplateComponent implements OnInit {
     this.firstName = this.detail.firstname;
     this.lastName = this.detail.lastName;
     this.preferredName = this.detail.preferredName;
+    this.skypeId = this.detail.skypeId;
     this.email = this.detail.email;
     this.jobTitle = this.detail.jobTitle;
     this.dept = this.detail.dept;
@@ -78,6 +84,7 @@ export class FormTemplateComponent implements OnInit {
     this.isEdit =true;
     this.lastPreferName = this.detail.preferredName;
     }
+    console.log(this.isEdit);
   }
 
 

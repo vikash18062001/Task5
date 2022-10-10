@@ -51,11 +51,12 @@ hr
     color: rgb(14, 203, 241);
     cursor: pointer;
 }
-.filter-by
-{
-    
-}
 .text
 {
     font-weight:300;
+}
+.char-filter
+{
+    position:absolute;
+    left: 96vw;
 }

@@ -1,0 +1,34 @@
+<section class="form-show" [ngStyle]="{'top.px':top}">
+    <i class="bi bi-x-lg d-flex justify-content-end" (click)="showDetail()"></i>
+    <br>
+    <img src="assets/data/user.png" id="user-img">
+    <p class="user_name">{{user_name}}</p>
+    <p class="user_jobtitle">{{user_jobtitle}}</p>
+    <p class="user_departement">{{user_departement}}</p>
+    <p class="user_office">{{user_office}}</p> 
+    <div class="d-flex template">
+        <div class="details d-flex flex-column">
+            <span class="mobile">mobile</span>
+            <span class="mobile-no">{{user_mobileno}}</span>
+        </div>
+        <i class="bi bi-telephone-fill d-flex"></i>
+    </div>
+    <div class="d-flex template">
+        <div class="details d-flex flex-column">
+            <span class="skype">Skype Name</span>
+            <span class="skype-id">{{user_skypeid}}</span>
+        </div>
+        <i class="bi bi-skype d-flex"></i>
+    </div>
+    <div class="d-flex template">
+        <div class="details d-flex flex-column">
+            <span class="email">Email</span>
+            <span class="email-id">{{user_emailid}}</span>
+        </div>
+        <i class="bi bi-envelope-fill d-flex"></i>
+    </div>
+    <div class="footer-icons d-flex justify-content-evenly">
+        <i class="bi bi-trash-fill" (click)="deleteEmp()"></i>
+        <i class="bi bi-pencil-fill" (click)="editEmp(user_name)"></i>
+    </div>
+</section>

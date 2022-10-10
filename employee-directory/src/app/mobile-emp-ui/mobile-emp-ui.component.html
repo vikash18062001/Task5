@@ -1,8 +1,8 @@
 <section class="mobile-ui">
     <header class="header d-flex justify-content-between">
-        <i class="bi bi-list"></i>
+        <i class="bi bi-list" (click)="showDrawer()"></i>
         <div class="search-bar position-relative">
-            <i class="bi bi-search"></i><input type="text" placeholder="Enter Your Keyword" class="search-input">
+            <i class="bi bi-search"></i><input type="text" placeholder="Enter Your Keyword" class="search-input" [(ngModel)]="searchKeyWord" name="searchKeyword" (ngModelChange)="onChangeMobileUi()">
         </div>
         <i class="bi bi-filter" (click)="showfilter()"></i>
     </header>
@@ -14,21 +14,20 @@
     </div>
     <hr>
     <div class="d-flex btn">
-        <button class="add-emp">Add Employee</button>
+        <button class="add-emp" (click)="addEmployee()">Add Employee</button>
     </div>
     <div class="emp-container d-flex">
         <div class="div">
             <div class="employee" *ngFor="let emp of employee">
-                <app-mobile-emp-template [emp]="emp"></app-mobile-emp-template>
+                <app-mobile-emp-template [emp]="emp" (giveForm)="getDetails($event)"></app-mobile-emp-template>
             </div>
         </div>
-        <div class="char-filter d-flex flex-column my-3">
-            <div class="char" *ngFor="let x of filters">
+        <div class="char-filter d-flex flex-column my-3 ">
+            <div class="char" *ngFor="let x of filters" (click)="filterByChar(x)">
                 {{x}}
             </div>
         </div>
     </div>
-
-
-
+    <app-mobile-form-show [emp_Detail]="empDetails" (deleteFun)="deleteFun()" (editFunc)="editFun($event)"></app-mobile-form-show>
+    <app-mobile-emp-form-template [showForm]="toDisplay" (newEmpRegister)="newEmpRegistered()" [empFormDetail]="empFormDetail"></app-mobile-emp-form-template>
 </section>

@@ -1,5 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApplicationService } from '../application.service';
 import { RegistrationService } from '../registration.service';
 
@@ -27,7 +28,7 @@ export class FiltersComponent implements OnInit {
     'Departement',
     'Phone Number'
   ]
-  constructor(private _regService:RegistrationService,private _appService:ApplicationService) {
+  constructor(public _regService:RegistrationService,public _appService:ApplicationService,public router:Router) {
     this.isMobileResolution = this._appService.getMobileResolution();
    }
   filtersByName:any=[];
@@ -38,10 +39,7 @@ export class FiltersComponent implements OnInit {
       this.filtersByName.push(String.fromCharCode(i+65));
     }
   }
-  ngOnChange()
-  {
-    console.log('Helo');
-  }
+
   addEmployee()
   {
     this.toShow= !this.toShow;
@@ -78,7 +76,6 @@ export class FiltersComponent implements OnInit {
     this.empFormDetail = emp;
     this.toShow = !this.toShow;
     return true;
-
   }
   formDetail()
   {

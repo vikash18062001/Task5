@@ -1,0 +1,73 @@
+.form-show
+{
+    padding: 10% 5% 0 5%;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    box-sizing: border-box;
+    transition: all 1.5s ease;
+}
+#user-img
+{
+    width: 30%;
+}
+p{
+    margin:0;
+}
+.user_name
+{
+    font-size: 200%;
+    padding-bottom:5%;
+    font-weight: 200;
+}
+.user_jobtitle,.user_departement,.user_office
+{
+    font-weight: 200;
+    font-size: 130%;
+}
+.mobile,.skype,.email
+{
+    font-size: 200%;
+    font-weight: 200;
+}
+.mobile-no,.email-id
+{
+    color: rgb(81, 176, 246);
+}
+.bi-telephone-fill,.bi-envelope-fill,.bi-skype
+{
+    justify-content: end;
+    flex: 1 0 auto;
+    font-size: 200%;
+}
+.bi-telephone-fill
+{
+    color: green;
+}
+.bi-skype{
+    color: rgb(98, 185, 244);
+}
+.bi-envelope-fill
+{
+    color: rgb(241,188,69);
+}
+.template
+{
+    align-items: center;
+    padding: 4% 0;
+}
+.bi-trash-fill,.bi-pencil-fill
+{
+    font-size: 260%;
+    padding: 0 10%;
+}
+.bi-trash-fill
+{
+    color: rgb(149, 214, 249);
+}
+.skype-id
+{
+    color: rgb(98, 185, 244);
+}
+

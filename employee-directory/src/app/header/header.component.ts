@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
     this.isMobileResolution = this._appService.getMobileResolution();
     console.log(this.isMobileResolution);
   }
+  show=false;
   getEmpDetails:any []=[];
   ngOnInit(): void {
     this.getEmpDetails = this._regService.getAllEmployee();
@@ -24,6 +25,10 @@ export class HeaderComponent implements OnInit {
   loadPage()
   {
     window.location.reload();
+  }
+  showdraw(bool:boolean)
+  {
+    this.show = !this.show;
   }
 
 

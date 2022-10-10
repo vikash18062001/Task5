@@ -1,3 +1,4 @@
+import { EventEmitter, Output } from '@angular/core';
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mobile-emp-template.component.css']
 })
 export class MobileEmpTemplateComponent implements OnInit {
-  name="Vikash";
+  name:any;
+  @Output() giveForm:EventEmitter<any> = new EventEmitter();
   @Input() emp:any;
   constructor() { }
 
@@ -16,11 +18,12 @@ export class MobileEmpTemplateComponent implements OnInit {
   }
   updateList()
   {
-    this.name=this.emp.firstname;
+    this.name=this.emp.preferredName;
   }
-  showDetail()
+  showDetail(emp:any)
   {
-
+    var search =(emp.currentTarget.children[1].innerText);
+    this.giveForm.emit(search);
   }
 
 }

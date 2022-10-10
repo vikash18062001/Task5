@@ -55,6 +55,7 @@ footer{
         position: fixed;
         transition: all 1s ease;
         overflow: scroll;
+        top: 0;
     } 
     .nav-items
     {

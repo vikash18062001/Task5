@@ -1,6 +1,7 @@
-<div class="form-container position-absolute" [class.d-none]="toShow">
+<section *ngIf="showMobileForm"  @sidedrawer class="position-absolute">
     <form class="d-flex flex-column input-form" #form="ngForm" (ngSubmit)="addEmployee(form)">
         <header id="heading">Add Employee</header>
+        <img src="assets/data/user.png" id="user-img">
         <span class="d-flex input-fields">
             <input type="text" #fstName="ngModel" required [class.is-invalid]="fstName.invalid && fstName.touched"
                 placeholder="FirstName" id="firstName" [(ngModel)]="firstName" name="firstname"><i
@@ -61,9 +62,9 @@
             </select><i class="bi bi-pencil"></i></span>
         <div class="error text-danger " [class.d-none]="jbTitle.valid || jbTitle.untouched">Please Select Your Job Title
         </div>
-
-        <button class="btn btn-success d-flex justify-content-center" [disabled]="form.form.invalid" type="submit">Add Employee</button>
-        <button class="btn btn-danger  d-flex justify-content-center" type="button" (click)="cancel()">Cancel</button>
-
+        <div class="footer d-flex justify-content-evenly">
+            <i class="bi bi-x-lg" (click)="showEmpMobileForm()"></i>
+            <button type="submit" id="check-button" [disabled]="form.form.invalid"><i class="bi bi-check-lg"></i></button>
+        </div>
     </form>
-</div>
+</section>

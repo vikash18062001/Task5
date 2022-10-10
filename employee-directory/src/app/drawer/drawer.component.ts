@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Component, OnInit ,Output} from '@angular/core';
 import { ApplicationService } from '../application.service';
@@ -23,12 +24,16 @@ export class DrawerComponent implements OnInit {
     this.isMobileResolution = this._appService.getMobileResolution();
   }
   @Output() giveDetails:EventEmitter<any> = new EventEmitter();
-
+  @Input() toShowDrawer:any;
   ngOnInit(): void {
     this.departements = this._empService.getDepartements();
     this.offices = this._empService.getOffices();
     this.jobTitles = this._empService.getJobTitles();
     this.freqMap = this._regService.countNode;
+  }
+  ngOnChanges()
+  {
+    this.show();
   }
   filter(component:any ,dept:any)
   {
@@ -37,7 +42,7 @@ export class DrawerComponent implements OnInit {
   }
   show()
   {
-    this.left = this.left==0? -240 : 0;
+    this.left = this.left==0? -540 : 0;
     this.isVisible = !this.isVisible;
   }
 
