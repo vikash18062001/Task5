@@ -63,6 +63,7 @@ export class RegistrationService {
 
     this.allEmployee.push(newEmployee);
     localStorage.setItem('employee',JSON.stringify(this.allEmployee));
+    this.initializeCountNode();
     this.countFreq();
   }
   countFreq()
@@ -104,7 +105,6 @@ export class RegistrationService {
   }
   searchBasedOnSearchFilter(value:any,basis:any)
   {
-    console.log(value,basis);
 
     var x =this.getAllEmployee();
     this.filterEmployee  =[];
@@ -135,7 +135,7 @@ export class RegistrationService {
     var x = this.getAllEmployee();
     var newList ;
     newList  = x.map((e:any)=>{
-      console.log(e['preferredName'],name)
+      // console.log(e['preferredName'],name)
       if(e['preferredName']==name)
       {
         emp.preferredName = emp.firstname + " " + emp.lastName;
@@ -159,7 +159,6 @@ export class RegistrationService {
       else
         return true;
     })
-    console.log(y);
     localStorage.setItem('employee',JSON.stringify(y));
     this.initializeCountNode();
     this.countFreq();

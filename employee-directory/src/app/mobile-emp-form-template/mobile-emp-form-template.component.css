@@ -1,8 +1,6 @@
 section{
     top: 0;
     background-color: white;
-    width: 100vw;
-    height: 100vh;
 }
 #user-img
 {
@@ -30,7 +28,6 @@ section{
 {
     align-items: center;
     justify-content: center;
-    /* background-color:aquamarine */
 }
 #heading
 {
@@ -44,7 +41,7 @@ section{
     align-items: center;
 }
 .input-fields input,.input-fields select{
-    width: 100%;
+    width: 90%;
 }
 input,select
 {

@@ -57,6 +57,6 @@ hr
 }
 .char-filter
 {
-    position:absolute;
+    position:fixed;
     left: 96vw;
 }

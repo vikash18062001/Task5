@@ -51,7 +51,7 @@
                 <option value="{{office}}" *ngFor="let office of offices" [attr.selected]="office=='Seattle'">{{office}}
                 </option>
             </select><i class="bi bi-pencil"></i></span>
-        <div class="error text-danger " [class.d-none]="officeName.valid || officeName.untouched">Please Select You
+        <div class="error text-danger" [class.d-none]="officeName.valid || officeName.untouched">Please Select You
             Office</div>
 
         <span class="d-flex input-fields"><select required [class.is-invalid]="jbTitle.invalid && jbTitle.touched"

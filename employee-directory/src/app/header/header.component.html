@@ -21,7 +21,7 @@
         <app-drawer (giveDetails)="empDetails($event)"></app-drawer> 
     </div>
     <ng-template #mobile_tmp>
-        <app-mobile-emp-ui (showdrawer)="showdraw($event)"></app-mobile-emp-ui>
+        <app-mobile-emp-ui (showdrawer)="showdraw($event)" [filteredEmployee]="getEmpDetails"></app-mobile-emp-ui>
         <app-drawer (giveDetails)="empDetails($event)" [toShowDrawer]="show" ></app-drawer>
     </ng-template>
     <div *ngIf="!isMobileResolution "class="col-9" >

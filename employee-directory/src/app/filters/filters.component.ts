@@ -39,7 +39,6 @@ export class FiltersComponent implements OnInit {
       this.filtersByName.push(String.fromCharCode(i+65));
     }
   }
-
   addEmployee()
   {
     this.toShow= !this.toShow;

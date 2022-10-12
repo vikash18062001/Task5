@@ -1,3 +1,4 @@
+import { HostListener } from '@angular/core';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -16,6 +17,11 @@ export class ApplicationService {
   public getMobileResolution()
   {
     return this.isMobileResolution;
+  }
+  @HostListener('window:resize',['$event'])
+  onResize(event:any)
+  {
+    console.log(window.innerWidth);
   }
 
 }

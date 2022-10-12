@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   public isMobileResolution:boolean;
   constructor(private _regService:RegistrationService,private _appService:ApplicationService) { 
     this.isMobileResolution = this._appService.getMobileResolution();
-    console.log(this.isMobileResolution);
+    // console.log(this.isMobileResolution);
   }
   show=false;
   getEmpDetails:any []=[];

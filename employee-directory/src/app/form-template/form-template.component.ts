@@ -84,7 +84,7 @@ export class FormTemplateComponent implements OnInit {
     this.isEdit =true;
     this.lastPreferName = this.detail.preferredName;
     }
-    console.log(this.isEdit);
+    // console.log(this.isEdit);
   }
 
 

@@ -34,6 +34,7 @@ export class DrawerComponent implements OnInit {
   ngOnChanges()
   {
     this.show();
+    this.freqMap = this._regService.countNode;
   }
   filter(component:any ,dept:any)
   {

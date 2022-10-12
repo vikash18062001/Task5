@@ -1,4 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SimpleChange } from '@angular/core';
+import { SimpleChanges } from '@angular/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 import { EmployeeServiceService } from '../employee-service.service';
@@ -39,10 +41,10 @@ export class MobileEmpFormTemplateComponent implements OnInit {
   showMobileForm: any;
 
   constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) { }
-  toShow=true;
   @Output() newEmpRegister:EventEmitter<any> = new EventEmitter();
+  @Output() cancelForm:EventEmitter<any> = new EventEmitter();
   @Input() detail:any;
-  @Input() showForm:any;
+  @Input() showMobileEmpForm:any;
   @Input() empFormDetail:any;
   isEdit = false;
   lastPreferName:any;
@@ -52,12 +54,10 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     this.offices = this._empService.getOffices();
     this.jobTitles = this._empService.getJobTitles();
   }
-  ngOnChanges()
+  ngOnChanges(changes:SimpleChanges)
   {
-    this.toShow = (!this.toShow);
-    // this.initializeForm();
-    if(this.showForm)
-      this.showEmpMobileForm();
+    if(this.showMobileEmpForm)
+      this.showEmpMobileForm(event);
     if(this.empFormDetail)
       this.fillFormDetail(this.empFormDetail);
   }
@@ -67,50 +67,34 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     if(!this.isEdit)
     {
     this._newEmp.registerNewEmployee(form.value);
-    this.cancel();
-    this.newEmpRegister.emit();
+    console.log("new",!this.isEdit);
+    this.newEmpRegister.emit(!this.isEdit);
+
     }
     else
     {
-      console.log(form.value);
-      this.editEmployee(form.value,this.lastPreferName);
-      // this._newEmp.editEmployee(form.value,this.lastPreferName);
-      // this.cancel();
-      // this.newEmpRegister.emit();
+      console.log("edit",this.isEdit);
+      this._newEmp.editEmployee(form.value,this.lastPreferName);
+      this.newEmpRegister.emit(!this.isEdit);
     }
+    this.isEdit = ! this.isEdit;
     this.showMobileForm = !this.showMobileForm;
     this.clearInput();
+    this.empFormDetail=undefined;
   }
-  editEmployee(firstValue:any,secondValue:any)
+  showEmpMobileForm(e:any)
   {
-    this._newEmp.editEmployee(firstValue,secondValue);
-    this.cancel();
-    this.newEmpRegister.emit();
+    this.clearInput();
+    this.showMobileForm = !this.showMobileForm;
   }
-  cancel()
-  {
-    this.toShow = !this.toShow;
-  }
-  initializeForm()
-  {
-    if(this.detail)
-    {
-    this.firstName = this.detail.firstname;
-    this.lastName = this.detail.lastName;
-    this.preferredName = this.detail.preferredName;
-    this.skypeId = this.detail.skypeId;
-    this.email = this.detail.email;
-    this.jobTitle = this.detail.jobTitle;
-    this.dept = this.detail.dept;
-    this.phoneNumber = this.detail.phoneNumber;
-    this.office = this.detail.office;
-    this.isEdit =true;
-    this.lastPreferName = this.detail.preferredName;
-    }
-  }
-  showEmpMobileForm()
+  cancelEmpMobileForm(e:any)
   {
     this.showMobileForm = !this.showMobileForm;
+    this.clearInput();
+    this.cancelForm.emit(this.empFormDetail);
+    this.empFormDetail=undefined;
+
+    
   }
   clearInput()
   {
@@ -138,9 +122,7 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     this.dept = emp.dept;
     this.skypeId = emp.skype;
     this.isEdit = !this.isEdit;
-    // this.editEmployee(form.value,emp.preferredName);
+    this.lastPreferName = emp.preferredName;
     }
-    
-    
   }
 }

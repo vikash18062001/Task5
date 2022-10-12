@@ -1,5 +1,7 @@
-import { Input } from '@angular/core';
+import { ChangeDetectorRef, Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { SimpleChanges } from '@angular/core';
+import { SimpleChange } from '@angular/core';
 import { Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from '../registration.service';
@@ -10,32 +12,36 @@ import { RegistrationService } from '../registration.service';
   styleUrls: ['./mobile-form-show.component.css']
 })
 export class MobileFormShowComponent implements OnInit {
-  @Input() emp_Detail:any;
-  @Output() deleteFun:EventEmitter<any> = new EventEmitter();
-  @Output() editFunc:EventEmitter<any> = new EventEmitter();
-  showMobileForm=false;
-  top=0;
-  constructor(public _regService:RegistrationService) { }
-  user_name:any;
-  user_jobtitle:any;
-  user_departement:any;
-  user_office:any;
-  user_mobileno:any;
-  user_skypeid:any;
-  user_emailid:any;
-  empDetail:any;
+  @Input() emp_Detail: any;
+  @Output() deleteFun: EventEmitter<any> = new EventEmitter();
+  @Output() editFunc: EventEmitter<any> = new EventEmitter();
+  @Output() redoFirstPage: EventEmitter<any> = new EventEmitter();
+  @Input() showMobileForm :any;
+  top = -1000;
+  constructor(public _regService: RegistrationService,private cd: ChangeDetectorRef) { }
+  user_name: any;
+  user_jobtitle: any;
+  user_departement: any;
+  user_office: any;
+  user_mobileno: any;
+  user_skypeid: any;
+  user_emailid: any;
+  empDetail: any;
   ngOnInit(): void {
+    console.log("SHow form ", this.showMobileForm)
+  }
 
-  }
-  ngOnChanges()
-  {
-    if(this.emp_Detail)
+  ngOnChanges(changes:SimpleChanges) {
+    console.log(changes);
+    if (this.emp_Detail)
+    {
       this.fillDetails();
-    this.showDetail();
-    
+    }
+    if(this.showMobileForm)
+      this.showDetail();
+      console.log("mobileform",this.showMobileForm);
   }
-  fillDetails()
-  {
+  fillDetails() {
     this.user_name = this.emp_Detail.preferredName;
     this.user_jobtitle = this.emp_Detail.jobTitle;
     this.user_departement = this.emp_Detail.dept;
@@ -44,21 +50,31 @@ export class MobileFormShowComponent implements OnInit {
     this.user_emailid = this.emp_Detail.email;
     this.user_skypeid = this.emp_Detail.skype;
   }
-  showDetail()
-  {
-    this.showMobileForm = !this.showMobileForm;
-    this.top = this.top==0?-700:0;
+  showDetail() {
+    this.top = this.top == 0 ? -1000 : 0;
   }
-  deleteEmp()
-  {
+  deleteEmp() {
     this._regService.deleteAnEmployee(this.emp_Detail);
-    this.showDetail();
     this.deleteFun.emit();
+    this.top = -1000;
   }
-  editEmp(emp:any)
-  {
+  editEmp(emp: any) {
     this.empDetail = this._regService.getEmpDetail(emp);
+    this.showDetail();
     this.editFunc.emit(this.empDetail);
   }
-  
+  redoAction(e:any)
+  {
+    // if(e)
+    // this.redoFirstPage.emit(true);
+    // else
+    this.redoFirstPage.emit(false);
+  }
+  clickCross()
+  {
+    console.log("Click Cross")
+    this.showDetail();
+    this.redoAction(true);
+  }
+
 }

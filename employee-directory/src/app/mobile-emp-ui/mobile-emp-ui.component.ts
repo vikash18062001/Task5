@@ -8,28 +8,29 @@ import { EventEmitter } from '@angular/core';
 import { transform } from 'typescript';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-mobile-emp-ui',
   templateUrl: './mobile-emp-ui.component.html',
   styleUrls: ['./mobile-emp-ui.component.css'],
-  
-  
 })
 
 export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
   toShowForm=false;
+  toShowFormTwo=true;
   toDisplay=false;
-
-  constructor(public  route:Router,public reg:RegistrationService,public  app:ApplicationService) { 
+  deleteMobileFirstScreen=true;
+  constructor(public route:Router,public reg:RegistrationService,public  app:ApplicationService) { 
     super(reg,app,route);
   }
   @Output() giveDetails:EventEmitter<any> = new EventEmitter();
   @Output() showdrawer:EventEmitter<any> = new EventEmitter();
-  
+  @Input() filteredEmployee:any;
+  showForm =false ;
   show:any;
   data:any;
-  empDetails:any;
-  
+  empDetails:undefined;
+  formShow=true;
   showFilter  =false;
   dropDownFilter:any = [];
   filters :any =[];
@@ -38,6 +39,11 @@ export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
     this.getAllEmp();
     this.getFilters();
     this.dropDownFilter = this.filtersName;
+    // this.redoIt();
+  }
+  ngOnChanges()
+  {
+    this.employee = this.filteredEmployee;
   }
   getAllEmp()
   {
@@ -78,25 +84,64 @@ export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
   {
     var formDetail = this._regService.getEmpDetail(e);
     this.empDetails = formDetail;
+    this.showForm =! this.showForm;
   }
   deleteFun()
   {
     this.employee = this._regService.getAllEmployee();
+    this.redoIt(false,false);
   }
   override addEmployee(): void {
+    this.toShowFormTwo = !this.toShowFormTwo;
     this.toDisplay = !this.toDisplay;
   }
-  newEmpRegistered()
+  newEmpRegistered(isEdit:any)
   {
     this.employee = this._regService.getAllEmployee();
+    this.redoIt(isEdit,true);
+    //give true when new emp is registered
   }
   editFun(emp:any)
   {
-    this.toDisplay = !this.toDisplay;
+    this.toDisplay = true;
     this.empFormDetail = emp;
   }
- 
-  
+  deleteOrRedoFirstPage(isEdit:any,newEmp:any)
+  {
+    console.log(this.showForm,this.toShowFormTwo);
+    if(isEdit)
+    {
+      this.toShowFormTwo = true;
+      // this.toDisplay = !this.toDisplay;
+    }
+    else{
+      this.showForm=false;
+    }
+    if(newEmp)
+    {
+      this.toDisplay = !this.toDisplay;
+    }
+  }
+  redoIt(isEdit:any,newEmp:any)
+  {
+    console.log("redoIt",isEdit);
+    this.deleteOrRedoFirstPage(isEdit,newEmp);
+  }
+  cancelForm(e:any)
+  {
+    if(e==undefined)
+    {
+    this.toShowFormTwo=!this.toShowFormTwo;
+    this.toDisplay = !this.toDisplay;
+    }
+    else{
+      this.toShowFormTwo=true;
+      this.showForm= false;
+      this.toDisplay = !this.toDisplay;
+
+    }
+  }
+
 }
 
 

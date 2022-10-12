@@ -1,4 +1,4 @@
-<section class="mobile-ui">
+<section class="mobile-ui" *ngIf="(!showForm)&&toShowFormTwo">
     <header class="header d-flex justify-content-between">
         <i class="bi bi-list" (click)="showDrawer()"></i>
         <div class="search-bar position-relative">
@@ -19,7 +19,7 @@
     <div class="emp-container d-flex">
         <div class="div">
             <div class="employee" *ngFor="let emp of employee">
-                <app-mobile-emp-template [emp]="emp" (giveForm)="getDetails($event)"></app-mobile-emp-template>
+                <app-mobile-emp-template [emp]="emp" (giveForm)="getDetails($event)" ></app-mobile-emp-template>
             </div>
         </div>
         <div class="char-filter d-flex flex-column my-3 ">
@@ -28,6 +28,8 @@
             </div>
         </div>
     </div>
-    <app-mobile-form-show [emp_Detail]="empDetails" (deleteFun)="deleteFun()" (editFunc)="editFun($event)"></app-mobile-form-show>
-    <app-mobile-emp-form-template [showForm]="toDisplay" (newEmpRegister)="newEmpRegistered()" [empFormDetail]="empFormDetail"></app-mobile-emp-form-template>
 </section>
+<app-mobile-form-show [emp_Detail]="empDetails" [showMobileForm]="showForm" (redoFirstPage)="redoIt($event,$event)" (deleteFun)="deleteFun()" (editFunc)="editFun($event)" ></app-mobile-form-show>
+
+<app-mobile-emp-form-template [showMobileEmpForm]="toDisplay" (newEmpRegister)="newEmpRegistered($event)" [empFormDetail]="empFormDetail" (cancelForm)="cancelForm($event)"></app-mobile-emp-form-template>
+
