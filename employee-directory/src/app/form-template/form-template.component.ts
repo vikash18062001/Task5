@@ -86,6 +86,10 @@ export class FormTemplateComponent implements OnInit {
     }
     // console.log(this.isEdit);
   }
+  changePhoneNumberField(e:any)
+  {
+    // this.phoneNumber = 
+  }
 
 
   

@@ -8,7 +8,7 @@
     </header>
     <div *ngIf="showFilter" class="filter-by d-flex align-items-center justify-content-end">
         <label for="filters-by" class="text">Filter by:</label>
-        <select name="filters" id="filtersDropDown" [(ngModel)]="selectedFilter" (ngModelChange)="onFilterChange()">
+        <select name="filters" id="filtersDropDown" [(ngModel)]="selectedFilter" (ngModelChange)="onFilterChange($event)">
             <option value="{{filters}}" *ngFor="let filters of dropDownFilter">{{filters}}</option>
         </select>
     </div>

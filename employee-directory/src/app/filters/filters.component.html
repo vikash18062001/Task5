@@ -1,6 +1,6 @@
 <div class="upper-half-filters" *ngIf="!isMobileResolution">
     <div class="filters d-flex">
-        <div (click)="filter(char,'preferredName')" *ngFor="let char of filtersByName" class="firstname-container d-flex">
+        <div (click)="filter(char,'preferredName')"  *ngFor="let char of filtersByName" class="firstname-container d-flex">
             {{char}}
         </div>
     </div>
@@ -13,8 +13,8 @@
     <button class="clear-btn" (click)="clear()">Clear</button>
     <div class="filter-by d-flex align-items-center">
         <label for="filters-by" class="">Filter by:</label>
-        <select name="filters" id="filtersDropDown" [(ngModel)]="selectedFilter" (ngModelChange)="onFilterChange()">
-            <option value="{{filters}}" *ngFor="let filters of filtersName">{{filters}}</option>
+        <select name="filters" id="filtersDropDown" (change)="onFilterChange($event)">
+            <option  [value]="filters" *ngFor="let filters of filtersName">{{filters}}</option>
         </select>
     </div>
     <button class="add-employee" (click)="addEmployee()">Add Employee</button>

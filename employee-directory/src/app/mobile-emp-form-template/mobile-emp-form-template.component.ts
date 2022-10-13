@@ -1,5 +1,4 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { SimpleChange } from '@angular/core';
 import { SimpleChanges } from '@angular/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
@@ -24,7 +23,9 @@ import { RegistrationService } from '../registration.service';
   ]
 })
 export class MobileEmpFormTemplateComponent implements OnInit {
-
+  imageUrl:any;
+  user_image:any;
+  image_source:any;
   isTrue=false;
   firstName:any;
   lastName:any;
@@ -61,26 +62,35 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     if(this.empFormDetail)
       this.fillFormDetail(this.empFormDetail);
   }
-  
+  loadImage()
+  {
+    console.log("hello")
+  }
   addEmployee(form: { value: any; })
   {
+    
     if(!this.isEdit)
     {
+    form.value.imageurl = this.user_image;
     this._newEmp.registerNewEmployee(form.value);
     console.log("new",!this.isEdit);
     this.newEmpRegister.emit(!this.isEdit);
+    this.isEdit = this.isEdit;
 
     }
     else
     {
+      form.value.imageurl = this.user_image;
       console.log("edit",this.isEdit);
       this._newEmp.editEmployee(form.value,this.lastPreferName);
       this.newEmpRegister.emit(!this.isEdit);
+      this.isEdit = !this.isEdit;
     }
-    this.isEdit = ! this.isEdit;
+    // this.isEdit = false;
     this.showMobileForm = !this.showMobileForm;
     this.clearInput();
     this.empFormDetail=undefined;
+    this.imageUrl='';
   }
   showEmpMobileForm(e:any)
   {
@@ -123,6 +133,20 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     this.skypeId = emp.skype;
     this.isEdit = !this.isEdit;
     this.lastPreferName = emp.preferredName;
+    this.imageUrl = emp.imageurl;
     }
+  }
+  selectedImage(e:any)
+  {
+    if(e.target.files)
+    {
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload=(event:any)=>{
+      this.imageUrl = event.target.result;
+      this.user_image = this.imageUrl;
+    }
+    }
+
   }
 }

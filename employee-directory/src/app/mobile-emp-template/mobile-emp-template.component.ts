@@ -11,6 +11,7 @@ export class MobileEmpTemplateComponent implements OnInit {
   name:any;
   @Output() giveForm:EventEmitter<any> = new EventEmitter();
   @Input() emp:any;
+  imageUrl:any;
   constructor() { }
 
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class MobileEmpTemplateComponent implements OnInit {
   }
   updateList()
   {
+    this.imageUrl = this.emp.imageurl;
     this.name=this.emp.preferredName;
   }
   showDetail(emp:any)

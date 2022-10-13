@@ -112,7 +112,6 @@ export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
     if(isEdit)
     {
       this.toShowFormTwo = true;
-      // this.toDisplay = !this.toDisplay;
     }
     else{
       this.showForm=false;

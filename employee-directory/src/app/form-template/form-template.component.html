@@ -24,20 +24,21 @@
         <div class="error text-danger " [class.d-none]="emailField.valid || emailField.untouched">Enter Your Email</div>
 
         <span class="d-flex input-fields">
-            <input required [class.is-invalid]="skype.invalid && skype.touched" type="text"
-                #skype="ngModel" [(ngModel)]="skypeId" placeholder="SkypeId" id="skype" name="skype">
+            <input required [class.is-invalid]="skype.invalid && skype.touched" type="text" #skype="ngModel"
+                [(ngModel)]="skypeId" placeholder="SkypeId" id="skype" name="skype">
             <i class="bi bi-pencil"></i>
         </span>
         <div class="error text-danger " [class.d-none]="skype.valid || skype.untouched">Enter Your Skype Id</div>
 
-        <span class="d-flex input-fields "><input required pattern="^\d{10}$" [class.is-invalid]="phnNumber.invalid && phnNumber.touched"
-                type="tel" #phnNumber="ngModel" [(ngModel)]="phoneNumber" placeholder="PhoneNumber" id="phoneNumber"
-                name="phoneNumber"><i class="bi bi-pencil"></i></span>
+        <span class="d-flex input-fields "><input required pattern="^\d{10}$"
+                [class.is-invalid]="phnNumber.invalid && phnNumber.touched" type="tel" #phnNumber="ngModel"
+                [(ngModel)]="phoneNumber" placeholder="PhoneNumber" id="phoneNumber" name="phoneNumber"><i
+                class="bi bi-pencil"></i></span>
         <div *ngIf="phnNumber.errors && (phnNumber.invalid && phnNumber.touched)">
             <div class="error text-danger" *ngIf="phnNumber.errors['required']">Enter Your PhoneNumber</div>
             <div class="error text-danger" *ngIf="phnNumber.errors['pattern']">Phone Number Must Be of 10 Digits</div>
         </div>
-        
+
 
         <span class="d-flex input-fields"><select required [class.is-invalid]="dptName.invalid && dptName.touched"
                 name="dept" id="dept" #dptName="ngModel" [(ngModel)]="dept">
@@ -47,7 +48,7 @@
             Departement</div>
 
         <span class="d-flex input-fields"><select required [class.is-invalid]="officeName.invalid && officeName.touched"
-                name="office" #officeName="ngModel" [(ngModel)]="office" id="offices">
+                name="office" #officeName="ngModel" [(ngModel)]="office" ng-model="Office"id="offices" >
                 <option value="{{office}}" *ngFor="let office of offices" [attr.selected]="office=='Seattle'">{{office}}
                 </option>
             </select><i class="bi bi-pencil"></i></span>
@@ -62,7 +63,8 @@
         <div class="error text-danger " [class.d-none]="jbTitle.valid || jbTitle.untouched">Please Select Your Job Title
         </div>
 
-        <button class="btn btn-success d-flex justify-content-center" [disabled]="form.form.invalid" type="submit">Add Employee</button>
+        <button class="btn btn-success d-flex justify-content-center" [disabled]="form.form.invalid" type="submit">Add
+            Employee</button>
         <button class="btn btn-danger  d-flex justify-content-center" type="button" (click)="cancel()">Cancel</button>
 
     </form>

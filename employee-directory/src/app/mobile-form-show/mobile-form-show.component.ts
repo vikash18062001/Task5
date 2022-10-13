@@ -19,6 +19,7 @@ export class MobileFormShowComponent implements OnInit {
   @Input() showMobileForm :any;
   top = -1000;
   constructor(public _regService: RegistrationService,private cd: ChangeDetectorRef) { }
+  imageUrl:any;
   user_name: any;
   user_jobtitle: any;
   user_departement: any;
@@ -39,7 +40,8 @@ export class MobileFormShowComponent implements OnInit {
     }
     if(this.showMobileForm)
       this.showDetail();
-      console.log("mobileform",this.showMobileForm);
+    if(this.emp_Detail)
+    this.imageUrl = this.emp_Detail.imageurl;
   }
   fillDetails() {
     this.user_name = this.emp_Detail.preferredName;

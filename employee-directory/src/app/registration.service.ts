@@ -132,10 +132,10 @@ export class RegistrationService {
   }
   editEmployee(emp:any,name:any)
   {
+    console.log(emp);
     var x = this.getAllEmployee();
     var newList ;
     newList  = x.map((e:any)=>{
-      // console.log(e['preferredName'],name)
       if(e['preferredName']==name)
       {
         emp.preferredName = emp.firstname + " " + emp.lastName;

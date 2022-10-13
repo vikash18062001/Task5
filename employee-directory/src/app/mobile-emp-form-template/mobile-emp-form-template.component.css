@@ -2,6 +2,23 @@ section{
     top: 0;
     background-color: white;
 }
+.add-photo-label
+{
+    left: 5%;
+    bottom: 14%;
+}
+.user-img>img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.user-img
+{
+    height: 100px;
+    width: 100px;
+    background-color: rgb(47, 108, 152);
+}
 #user-img
 {
     width: 40%;
@@ -26,8 +43,8 @@ section{
 }
 .input-form
 {
-    align-items: center;
     justify-content: center;
+    margin: 0 10%;
 }
 #heading
 {
@@ -38,16 +55,28 @@ section{
 .input-fields
 {
     width:100%;
-    align-items: center;
+    align-items: flex-start;
 }
-.input-fields input,.input-fields select{
-    width: 90%;
+.input-fields
+{
+    margin: 3% 0% 3% 0%;
 }
+.input-fields>label{
+    /* margin:2% 0; */
+    font-weight: 200;
+}
+.input-fields input,.input-fields select
+{
+    width: 80%;
+    border: 1px solid black;
+
+}
+
 input,select
 {
-    margin:3.5% 2%;
-    padding:2% 0;
-    border-radius: 10px;
+    padding:1% 0;
+    box-shadow: inset;
+    
 }
 .form-container
 {
@@ -63,9 +92,15 @@ input,select
     width: 50%;
     margin: 1% 0;
 }
+
 input::content
 {
     padding-left: 2%;
+}
+input::placeholder
+{
+    color: rgb(183,183,183);
+    font-weight: 200;
 }
 .is-invalid
 {
@@ -74,5 +109,11 @@ input::content
 .footer
 {
     width: 100%;
+}
+.file-input
+{
+    opacity: 0;
+    bottom:10%;
+    left:10%;
 }
 

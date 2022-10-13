@@ -30,6 +30,7 @@ export class FiltersComponent implements OnInit {
   ]
   constructor(public _regService:RegistrationService,public _appService:ApplicationService,public router:Router) {
     this.isMobileResolution = this._appService.getMobileResolution();
+    this.selectedFilter="Preferred Name";
    }
   filtersByName:any=[];
   
@@ -47,18 +48,31 @@ export class FiltersComponent implements OnInit {
   {
     return false;
   }
+  previousValue:any;
   filter(value:any,basis:any)
   {
-    var x =this._regService.searchFilterByFirstName(value,basis);
-    this.empToShow = x;
+    if(this.previousValue===value)
+    {
+      console.log("true");
+      var y = this._regService.getAllEmployee();
+      this.empToShow = y;
+      this.previousValue='';
+    }
+    else
+    {
+      var x =this._regService.searchFilterByFirstName(value,basis);
+      this.empToShow = x;
+      this.previousValue=value;
+    }
   }
   onChange()
   {
     var x = this._regService.searchBasedOnSearchFilter(this.searchKeyWord,this.selectedFilter);
     this.empToShow = x;
   }
-  onFilterChange()
+  onFilterChange(e:any)
   {
+    this.selectedFilter = e.target.value;
     this.clear();
   }
   clear()
