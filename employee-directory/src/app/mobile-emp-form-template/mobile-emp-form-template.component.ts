@@ -41,7 +41,11 @@ export class MobileEmpFormTemplateComponent implements OnInit {
   skypeId:any;
   showMobileForm: any;
 
-  constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) { }
+  constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) {
+    this.office='IT';
+    this.dept = "India";
+    this.jobTitle = "SharePoint Practise Head";
+   }
   @Output() newEmpRegister:EventEmitter<any> = new EventEmitter();
   @Output() cancelForm:EventEmitter<any> = new EventEmitter();
   @Input() detail:any;
@@ -57,10 +61,15 @@ export class MobileEmpFormTemplateComponent implements OnInit {
   }
   ngOnChanges(changes:SimpleChanges)
   {
+    this.office='India';
+    this.dept = 'IT';
+    this.jobTitle = "SharePoint Practice Head";
     if(this.showMobileEmpForm)
       this.showEmpMobileForm(event);
     if(this.empFormDetail)
+    {
       this.fillFormDetail(this.empFormDetail);
+    }
   }
   loadImage()
   {
@@ -88,7 +97,6 @@ export class MobileEmpFormTemplateComponent implements OnInit {
       this.newEmpRegister.emit(!this.isEdit);
       this.isEdit = !this.isEdit;
     }
-    // this.isEdit = false;
     this.showMobileForm = !this.showMobileForm;
     this.clearInput();
     this.empFormDetail=undefined;
@@ -97,6 +105,7 @@ export class MobileEmpFormTemplateComponent implements OnInit {
   showEmpMobileForm(e:any)
   {
     this.clearInput();
+    
     this.showMobileForm = !this.showMobileForm;
   }
   cancelEmpMobileForm(e:any)
@@ -113,9 +122,9 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     this.firstName = '';
     this.lastName = '';
     this.skypeId = '';
-    this.dept = '';
-    this.office = '';
-    this.jobTitle = '';
+    // this.dept = '';
+    // this.office = '';
+    // this.jobTitle = '';
     this.email = '';
     this.phoneNumber = '';
     this.preferredName = '';

@@ -53,7 +53,6 @@ export class FiltersComponent implements OnInit {
   {
     if(this.previousValue===value)
     {
-      console.log("true");
       var y = this._regService.getAllEmployee();
       this.empToShow = y;
       this.previousValue='';
@@ -94,6 +93,7 @@ export class FiltersComponent implements OnInit {
   {
     return this.empFormDetail;
   }
+  
 
 
 }

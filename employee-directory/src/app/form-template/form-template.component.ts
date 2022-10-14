@@ -28,7 +28,11 @@ export class FormTemplateComponent implements OnInit {
   jobTitles:any;
   skypeId:any;
 
-  constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) { }
+  constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) {
+    this.office = "India";
+    this.dept = "IT";
+    this.jobTitle = 'SharePoint Practice Head';
+   }
   toShow=true;
   @Output() newEmpRegister:EventEmitter<any> = new EventEmitter();
   @Input() detail:any;
@@ -39,8 +43,7 @@ export class FormTemplateComponent implements OnInit {
     this.departements = this._empService.getDepartements();
     this.offices = this._empService.getOffices();
     this.jobTitles = this._empService.getJobTitles();
-    
-    
+   
   }
   ngOnChanges()
   {
@@ -72,10 +75,11 @@ export class FormTemplateComponent implements OnInit {
   {
     if(this.detail)
     {
+      console.log(this.detail)
     this.firstName = this.detail.firstname;
     this.lastName = this.detail.lastName;
     this.preferredName = this.detail.preferredName;
-    this.skypeId = this.detail.skypeId;
+    this.skypeId = this.detail.skype;
     this.email = this.detail.email;
     this.jobTitle = this.detail.jobTitle;
     this.dept = this.detail.dept;
@@ -84,7 +88,6 @@ export class FormTemplateComponent implements OnInit {
     this.isEdit =true;
     this.lastPreferName = this.detail.preferredName;
     }
-    // console.log(this.isEdit);
   }
   changePhoneNumberField(e:any)
   {
