@@ -68,7 +68,7 @@ export class MobileEmpFormTemplateComponent implements OnInit {
   }
   addEmployee(form: { value: any; })
   {
-    
+    console.log(this.isEdit);
     if(!this.isEdit)
     {
     form.value.imageurl = this.user_image;
@@ -80,8 +80,10 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     }
     else
     {
+      if(this.user_image)
       form.value.imageurl = this.user_image;
       console.log("edit",this.isEdit);
+      console.log(form.value);
       this._newEmp.editEmployee(form.value,this.lastPreferName);
       this.newEmpRegister.emit(!this.isEdit);
       this.isEdit = !this.isEdit;
