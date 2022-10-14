@@ -2,6 +2,10 @@
 {
     align-items: center;
 }
+.div
+{
+    flex: 1 0 auto;
+}
 .search-bar
 {
     flex: 1 0 auto;

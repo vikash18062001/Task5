@@ -7,6 +7,10 @@
     box-sizing: border-box;
     transition: all 1.5s ease;
 }
+#default-img
+{
+    width: 50%;
+}
 #user-img
 {
     width: 70%;

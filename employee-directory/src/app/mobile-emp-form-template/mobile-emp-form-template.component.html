@@ -4,6 +4,7 @@
        <div class="add-photo ">
            <div class="user-img ">
                <img [src]="imageUrl" *ngIf="imageUrl">
+               <img src="assets/data/user.png" *ngIf="!imageUrl">
            </div>
            <div class="position-relative">
                <span class="add-photo-label position-absolute" *ngIf="!imageUrl">Add Photo</span>
