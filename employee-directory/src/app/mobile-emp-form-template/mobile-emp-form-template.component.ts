@@ -100,6 +100,7 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     this.showMobileForm = !this.showMobileForm;
     this.clearInput();
     this.empFormDetail=undefined;
+    this.user_image=undefined;
     this.imageUrl='';
   }
   showEmpMobileForm(e:any)
