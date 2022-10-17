@@ -1,11 +1,18 @@
-.employee-container
+.employee-container 
 {
     border:1px solid black;
     height: calc(100vh - 310px);
     flex-wrap: wrap;
     overflow: scroll;
+    align-content: flex-start;
+}
+#empContainer
+{
+    flex: 0 0 24%;
 }
 app-employee-detail-template
 {
-    flex: 0 0 auto;
+    flex: 1;
 }
+
+

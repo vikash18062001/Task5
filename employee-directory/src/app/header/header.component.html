@@ -17,14 +17,14 @@
     <hr>
 </section>
 <div class="row">
-    <div *ngIf="!isMobileResolution;else mobile_tmp" class="col-3" >
+    <div *ngIf="!isMobileResolution;else mobile_tmp" class="col-2" >
         <app-drawer (giveDetails)="empDetails($event)"></app-drawer> 
     </div>
     <ng-template #mobile_tmp>
         <app-mobile-emp-ui (showdrawer)="showdraw($event)" [filteredEmployee]="getEmpDetails"></app-mobile-emp-ui>
         <app-drawer (giveDetails)="empDetails($event)" [toShowDrawer]="show" ></app-drawer>
     </ng-template>
-    <div *ngIf="!isMobileResolution "class="col-9" >
+    <div *ngIf="!isMobileResolution "class="col-10" >
         <app-filters [empToShow]="getEmpDetails"></app-filters>
     </div>
 </div>

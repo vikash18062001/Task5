@@ -116,4 +116,8 @@ input::placeholder
     bottom:10%;
     left:10%;
 }
+input:disabled
+{
+    background-color: rgb(128,128,128,0.2);
+}
 
