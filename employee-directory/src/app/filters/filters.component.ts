@@ -42,7 +42,10 @@ export class FiltersComponent implements OnInit {
   }
   addEmployee()
   {
+    this.empFormDetail = '';
+    console.log(this.toShow);
     this.toShow= !this.toShow;
+    console.log("Add Clicked")
   }
   addEmployeeVisible()
   {
@@ -92,6 +95,10 @@ export class FiltersComponent implements OnInit {
   formDetail()
   {
     return this.empFormDetail;
+  }
+  hideForm()
+  {
+    this.toShow = false;
   }
   
 

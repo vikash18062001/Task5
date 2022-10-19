@@ -24,5 +24,5 @@
 </div>
 
 <app-employee-details  *ngIf="!isMobileResolution" [Employee]="empToShow" (EmpDetail)="sendFormData($event)"></app-employee-details>
-<app-form-template *ngIf="toShow" (newEmpRegister)="newEmpRegister()" [detail]="formDetail()" ></app-form-template>
+<app-form-template *ngIf="toShow" (newEmpRegister)="newEmpRegister()" [detail]="formDetail()" (hideForm)="hideForm()"></app-form-template>
  

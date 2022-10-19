@@ -7,6 +7,7 @@ import { EmployeeDetailsComponent } from '../employee-details/employee-details.c
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
+import { SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-form-template',
@@ -27,14 +28,15 @@ export class FormTemplateComponent implements OnInit {
   offices:any;
   jobTitles:any;
   skypeId:any;
+  toShow=true;
 
   constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) {
     this.office = "India";
     this.dept = "IT";
     this.jobTitle = 'SharePoint Practice Head';
    }
-  toShow=true;
   @Output() newEmpRegister:EventEmitter<any> = new EventEmitter();
+  @Output() hideForm:EventEmitter<any> = new EventEmitter();
   @Input() detail:any;
   isEdit = false;
   lastPreferName:any;
@@ -45,8 +47,9 @@ export class FormTemplateComponent implements OnInit {
     this.jobTitles = this._empService.getJobTitles();
    
   }
-  ngOnChanges()
+  ngOnChanges(change:SimpleChange)
   {
+    console.log(change);
     this.toShow = (!this.toShow);
     this.initializeForm();
   }
@@ -69,13 +72,15 @@ export class FormTemplateComponent implements OnInit {
   }
   cancel()
   {
-    this.toShow = !this.toShow;
+    this.clearFields();
+    this.toShow = true;
+    this.hideForm.emit();
+    //value true
   }
   initializeForm()
   {
     if(this.detail)
     {
-      console.log(this.detail)
     this.firstName = this.detail.firstname;
     this.lastName = this.detail.lastName;
     this.preferredName = this.detail.preferredName;
@@ -89,9 +94,19 @@ export class FormTemplateComponent implements OnInit {
     this.lastPreferName = this.detail.preferredName;
     }
   }
-  changePhoneNumberField(e:any)
+  clearFields()
   {
-    // this.phoneNumber = 
+    this.firstName = '';
+    this.lastName = '';
+    this.preferredName = '';
+    this.skypeId = '';
+    this.email = '';
+    this.jobTitle = '';
+    this.dept = '';
+    this.phoneNumber = '';
+    this.office = '';
+    this.isEdit =false;
+    this.lastPreferName = '';
   }
 
 
