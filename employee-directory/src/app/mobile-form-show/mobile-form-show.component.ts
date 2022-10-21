@@ -12,28 +12,26 @@ import { RegistrationService } from '../registration.service';
   styleUrls: ['./mobile-form-show.component.css']
 })
 export class MobileFormShowComponent implements OnInit {
-  @Input() emp_Detail: any;
+  @Input() emp_Detail:any;
   @Output() deleteFun: EventEmitter<any> = new EventEmitter();
-  @Output() editFunc: EventEmitter<any> = new EventEmitter();
-  @Output() redoFirstPage: EventEmitter<any> = new EventEmitter();
-  @Input() showMobileForm :any;
+  @Output() editFunc: EventEmitter<Object> = new EventEmitter();
+  @Output() redoFirstPage: EventEmitter<boolean> = new EventEmitter();
+  @Input() showMobileForm !:boolean;
   top = -1000;
-  constructor(public _regService: RegistrationService,private cd: ChangeDetectorRef) { }
-  imageUrl:any;
-  user_name: any;
-  user_jobtitle: any;
-  user_departement: any;
-  user_office: any;
-  user_mobileno: any;
-  user_skypeid: any;
-  user_emailid: any;
+  imageUrl!: String;
+  user_name!: String ;
+  user_jobtitle!: String ;
+  user_departement!: String ;
+  user_office!: String ;
+  user_mobileno!: String ;
+  user_skypeid!: String ;
+  user_emailid!: String ;
   empDetail: any;
+  constructor(public _regService: RegistrationService,private cd: ChangeDetectorRef) { }
   ngOnInit(): void {
-    console.log("SHow form ", this.showMobileForm)
   }
 
   ngOnChanges(changes:SimpleChanges) {
-    console.log(changes);
     if (this.emp_Detail)
     {
       this.fillDetails();
@@ -67,14 +65,10 @@ export class MobileFormShowComponent implements OnInit {
   }
   redoAction(e:any)
   {
-    // if(e)
-    // this.redoFirstPage.emit(true);
-    // else
     this.redoFirstPage.emit(false);
   }
   clickCross()
   {
-    console.log("Click Cross")
     this.showDetail();
     this.redoAction(true);
   }

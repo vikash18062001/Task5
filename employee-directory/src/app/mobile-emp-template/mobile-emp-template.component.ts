@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mobile-emp-template.component.css']
 })
 export class MobileEmpTemplateComponent implements OnInit {
-  name:any;
-  @Output() giveForm:EventEmitter<any> = new EventEmitter();
+  name !: String;
+  @Output() giveForm:EventEmitter<String> = new EventEmitter();
   @Input() emp:any;
-  imageUrl:any;
+  imageUrl !: String;
   constructor() { }
 
   ngOnInit(): void {

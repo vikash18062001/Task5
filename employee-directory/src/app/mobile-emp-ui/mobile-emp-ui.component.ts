@@ -5,9 +5,6 @@ import { RegistrationService } from '../registration.service';
 import { ApplicationService } from '../application.service';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { transform } from 'typescript';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Input } from '@angular/core';
 @Component({
   selector: 'app-mobile-emp-ui',
@@ -20,26 +17,25 @@ export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
   toShowFormTwo=true;
   toDisplay=false;
   deleteMobileFirstScreen=true;
-  constructor(public route:Router,public reg:RegistrationService,public  app:ApplicationService) { 
-    super(reg,app,route);
-  }
-  @Output() giveDetails:EventEmitter<any> = new EventEmitter();
-  @Output() showdrawer:EventEmitter<any> = new EventEmitter();
-  @Input() filteredEmployee:any;
   showForm =false ;
-  show:any;
-  data:any;
   empDetails:undefined;
   formShow=true;
   showFilter  =false;
-  dropDownFilter:any = [];
-  filters :any =[];
-  employee :any = [];
+  dropDownFilter:String[] = [];
+  filters :String[] =[];
+  employee :any =[];
+  @Output() showdrawer:EventEmitter<boolean> = new EventEmitter();
+  @Input() filteredEmployee !: Object;
+  constructor(
+    public route:Router,
+    public reg:RegistrationService,
+    public  app:ApplicationService) { 
+    super(reg,app,route);
+  }
   override ngOnInit(): void {
     this.getAllEmp();
     this.getFilters();
     this.dropDownFilter = this.filtersName;
-    // this.redoIt();
   }
   ngOnChanges()
   {
@@ -99,7 +95,6 @@ export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
   {
     this.employee = this._regService.getAllEmployee();
     this.redoIt(isEdit,true);
-    //give true when new emp is registered
   }
   editFun(emp:any)
   {
@@ -108,7 +103,6 @@ export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
   }
   deleteOrRedoFirstPage(isEdit:any,newEmp:any)
   {
-    console.log(this.showForm,this.toShowFormTwo);
     if(isEdit)
     {
       this.toShowFormTwo = true;
@@ -123,7 +117,6 @@ export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
   }
   redoIt(isEdit:any,newEmp:any)
   {
-    console.log("redoIt",isEdit);
     this.deleteOrRedoFirstPage(isEdit,newEmp);
   }
   cancelForm(e:any)

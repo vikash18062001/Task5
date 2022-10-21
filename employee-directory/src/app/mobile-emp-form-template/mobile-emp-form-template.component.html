@@ -84,7 +84,7 @@
         <div class="error text-danger " [class.d-none]="jbTitle.valid || jbTitle.untouched">Please Select Your Job Title
         </div>
         <div class="footer d-flex justify-content-evenly">
-            <i class="bi bi-x-lg" (click)="cancelEmpMobileForm($event)"></i>
+            <i class="bi bi-x-lg" (click)="cancelEmpMobileForm()"></i>
             <button type="submit" id="check-button" [disabled]="form.form.invalid"><i class="bi bi-check-lg"></i></button>
         </div>
     </form>

@@ -1,8 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
-import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
-import { FormTemplateComponent } from '../form-template/form-template.component';
 import { RegistrationService } from '../registration.service';
 
 @Component({
@@ -12,12 +10,14 @@ import { RegistrationService } from '../registration.service';
 })
 export class EmployeeDetailTemplateComponent implements OnInit {
   @Input() empDetail:any;
-  @Output() formDet:EventEmitter<any> = new EventEmitter();
-  constructor(private empDetails:EmployeeDetailsComponent,private _formTmp:FormTemplateComponent,private _regService:RegistrationService) { }
+  @Output() formDet:EventEmitter<Object> = new EventEmitter();
+  empName!: String ;
+  empJobTitle!: String;
+  empDepartement!: String;
+  constructor(
+    private _regService:RegistrationService) {
+    }
   
-  empName:any;
-  empJobTitle:any;
-  empDepartement:any;
   ngOnInit(): void {
     this.empName = this.empDetail.preferredName;
     this.empJobTitle = this.empDetail.jobTitle;
@@ -29,5 +29,4 @@ export class EmployeeDetailTemplateComponent implements OnInit {
     var formDetail = this._regService.getEmpDetail(name);
     this.formDet.emit(formDetail);
   }
-
 }

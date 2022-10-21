@@ -1,7 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { SimpleChanges } from '@angular/core';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EmployeeServiceService } from '../employee-service.service';
 import { RegistrationService } from '../registration.service';
 
@@ -23,36 +22,39 @@ import { RegistrationService } from '../registration.service';
   ]
 })
 export class MobileEmpFormTemplateComponent implements OnInit {
-  imageUrl:any;
-  user_image:any;
-  image_source:any;
+  imageUrl!:String;
+  user_image!:String;
+  image_source!:String;
   isTrue=false;
-  firstName:any;
-  lastName:any;
-  dept:any;
-  office:any;
-  preferredName:any;
-  jobTitle:any;
-  email:any;
-  phoneNumber:any;
-  departements:any;
-  offices:any;
-  jobTitles:any;
-  skypeId:any;
-  showMobileForm: any;
+  firstName!:String;
+  lastName!:String;
+  dept!:String;
+  office!:String;
+  preferredName!:String;
+  jobTitle!:String;
+  email!:String;
+  phoneNumber!:String;
+  departements:String[] =[];
+  offices:String[] = [];
+  jobTitles:String[] = [];
+  skypeId !:String;
+  showMobileForm !: boolean;
 
-  constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) {
+  @Output() newEmpRegister:EventEmitter<boolean> = new EventEmitter();
+  @Output() cancelForm:EventEmitter<Object> = new EventEmitter();
+  @Input() detail !: Object;
+  @Input() showMobileEmpForm !: Boolean;
+  @Input() empFormDetail !: Object;
+  isEdit = false;
+  lastPreferName !: String;
+  constructor(
+    private _empService:EmployeeServiceService,
+    private _newEmp:RegistrationService,
+    ) {
     this.office='IT';
     this.dept = "India";
     this.jobTitle = "SharePoint Practise Head";
    }
-  @Output() newEmpRegister:EventEmitter<any> = new EventEmitter();
-  @Output() cancelForm:EventEmitter<any> = new EventEmitter();
-  @Input() detail:any;
-  @Input() showMobileEmpForm:any;
-  @Input() empFormDetail:any;
-  isEdit = false;
-  lastPreferName:any;
 
   ngOnInit(): void {
     this.departements = this._empService.getDepartements();
@@ -65,24 +67,18 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     this.dept = 'IT';
     this.jobTitle = "SharePoint Practice Head";
     if(this.showMobileEmpForm)
-      this.showEmpMobileForm(event);
+      this.showEmpMobileForm();
     if(this.empFormDetail)
     {
       this.fillFormDetail(this.empFormDetail);
     }
   }
-  loadImage()
-  {
-    console.log("hello")
-  }
   addEmployee(form: { value: any; })
   {
-    console.log(this.isEdit);
     if(!this.isEdit)
     {
     form.value.imageurl = this.user_image;
     this._newEmp.registerNewEmployee(form.value);
-    console.log("new",!this.isEdit);
     this.newEmpRegister.emit(!this.isEdit);
     this.isEdit = this.isEdit;
 
@@ -91,41 +87,33 @@ export class MobileEmpFormTemplateComponent implements OnInit {
     {
       if(this.user_image)
       form.value.imageurl = this.user_image;
-      console.log("edit",this.isEdit);
-      console.log(form.value);
       this._newEmp.editEmployee(form.value,this.lastPreferName);
       this.newEmpRegister.emit(!this.isEdit);
       this.isEdit = !this.isEdit;
     }
     this.showMobileForm = !this.showMobileForm;
     this.clearInput();
-    this.empFormDetail=undefined;
-    this.user_image=undefined;
+    this.empFormDetail='';
+    this.user_image='';
     this.imageUrl='';
   }
-  showEmpMobileForm(e:any)
+  showEmpMobileForm()
   {
     this.clearInput();
-    
     this.showMobileForm = !this.showMobileForm;
   }
-  cancelEmpMobileForm(e:any)
+  cancelEmpMobileForm()
   {
     this.showMobileForm = !this.showMobileForm;
     this.clearInput();
     this.cancelForm.emit(this.empFormDetail);
-    this.empFormDetail=undefined;
-
-    
+    this.empFormDetail='';
   }
   clearInput()
   {
     this.firstName = '';
     this.lastName = '';
     this.skypeId = '';
-    // this.dept = '';
-    // this.office = '';
-    // this.jobTitle = '';
     this.email = '';
     this.phoneNumber = '';
     this.preferredName = '';
@@ -159,6 +147,5 @@ export class MobileEmpFormTemplateComponent implements OnInit {
       this.user_image = this.imageUrl;
     }
     }
-
   }
 }

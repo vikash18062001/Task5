@@ -16,18 +16,18 @@ import { SimpleChange } from '@angular/core';
 })
 export class FormTemplateComponent implements OnInit {
   isTrue=false;
-  firstName:any;
-  lastName:any;
-  dept:any;
-  office:any;
-  preferredName:any;
-  jobTitle:any;
-  email:any;
-  phoneNumber:any;
-  departements:any;
-  offices:any;
-  jobTitles:any;
-  skypeId:any;
+  firstName !:String;
+  lastName !:String;
+  dept!:String;
+  office!:String;
+  preferredName!:String;
+  jobTitle!:String;
+  email!:String;
+  phoneNumber!:String;
+  departements:String[] = [];
+  offices:String[] = [];
+  jobTitles:String[]=[];
+  skypeId !: String;
   toShow=true;
 
   constructor(private _empService:EmployeeServiceService,private _newEmp:RegistrationService,private elementRef:ElementRef,private empDetail:EmployeeDetailsComponent) {
@@ -35,11 +35,11 @@ export class FormTemplateComponent implements OnInit {
     this.dept = "IT";
     this.jobTitle = 'SharePoint Practice Head';
    }
-  @Output() newEmpRegister:EventEmitter<any> = new EventEmitter();
-  @Output() hideForm:EventEmitter<any> = new EventEmitter();
-  @Input() detail:any;
+  @Output() newEmpRegister:EventEmitter<Object> = new EventEmitter();
+  @Output() hideForm:EventEmitter<boolean> = new EventEmitter();
+  @Input() detail : any;
   isEdit = false;
-  lastPreferName:any;
+  lastPreferName !:String;
 
   ngOnInit(): void {
     this.departements = this._empService.getDepartements();
@@ -49,13 +49,13 @@ export class FormTemplateComponent implements OnInit {
   }
   ngOnChanges(change:SimpleChange)
   {
-    console.log(change);
     this.toShow = (!this.toShow);
     this.initializeForm();
   }
   
   addEmployee(form: { value: any; })
   {
+    console.log(typeof(form.value));
     if(!this.isEdit)
     {
     this._newEmp.registerNewEmployee(form.value);
@@ -75,7 +75,6 @@ export class FormTemplateComponent implements OnInit {
     this.clearFields();
     this.toShow = true;
     this.hideForm.emit();
-    //value true
   }
   initializeForm()
   {
@@ -108,8 +107,6 @@ export class FormTemplateComponent implements OnInit {
     this.isEdit =false;
     this.lastPreferName = '';
   }
-
-
   
 }
 

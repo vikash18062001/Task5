@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule ,UrlSegment } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,7 +14,6 @@ import { FormsModule } from '@angular/forms';
 import { RegistrationService } from './registration.service';
 import { MobileEmpUiComponent } from './mobile-emp-ui/mobile-emp-ui.component';
 import { MobileEmpTemplateComponent } from './mobile-emp-template/mobile-emp-template.component';
-// import { MobileFormTemplateComponent } from './mobile-form-template/mobile-form-template.component';
 import { MobileFormShowComponent } from './mobile-form-show/mobile-form-show.component';
 import { MobileEmpFormTemplateComponent } from './mobile-emp-form-template/mobile-emp-form-template.component';
 
@@ -38,9 +35,16 @@ import { MobileEmpFormTemplateComponent } from './mobile-emp-form-template/mobil
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [EmployeeServiceService,RegistrationService,EmployeeDetailsComponent,DrawerComponent,FormTemplateComponent,FiltersComponent],
+  providers: [
+    EmployeeServiceService,
+    RegistrationService,
+    EmployeeDetailsComponent,
+    DrawerComponent,
+    FormTemplateComponent,
+    FiltersComponent
+  ],
   bootstrap: [AppComponent]
 
 })

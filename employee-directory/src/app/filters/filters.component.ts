@@ -10,11 +10,11 @@ import { RegistrationService } from '../registration.service';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
-  @Input() empToShow:any;
-  isMobileResolution:any;
-  selectedFilter:any;
-  empFormDetail:any;
-  searchKeyWord:any;
+  @Input() empToShow !: Object;
+  isMobileResolution : boolean;
+  selectedFilter : String;
+  empFormDetail !: Object;
+  searchKeyWord !: String;
   toShow=false;
   visible=false;
   filtersName =[
@@ -28,11 +28,16 @@ export class FiltersComponent implements OnInit {
     'Departement',
     'Phone Number'
   ]
-  constructor(public _regService:RegistrationService,public _appService:ApplicationService,public router:Router) {
+  previousValue !: String;
+  filtersByName:String[]=[];
+  constructor(
+    public _regService:RegistrationService,
+    public _appService:ApplicationService,
+    public router:Router
+    ) {
     this.isMobileResolution = this._appService.getMobileResolution();
     this.selectedFilter="Preferred Name";
-   }
-  filtersByName:any=[];
+    }
   
   ngOnInit(): void {
     for(let i=0;i<26;i++)
@@ -43,16 +48,13 @@ export class FiltersComponent implements OnInit {
   addEmployee()
   {
     this.empFormDetail = '';
-    console.log(this.toShow);
     this.toShow= !this.toShow;
-    console.log("Add Clicked")
   }
   addEmployeeVisible()
   {
     return false;
   }
-  previousValue:any;
-  filter(value:any,basis:any)
+  filter(value:String,basis:String)
   {
     if(this.previousValue===value)
     {
@@ -100,7 +102,4 @@ export class FiltersComponent implements OnInit {
   {
     this.toShow = false;
   }
-  
-
-
 }

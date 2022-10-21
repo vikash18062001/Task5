@@ -10,20 +10,17 @@ import { RegistrationService } from '../registration.service';
 })
 export class EmployeeDetailsComponent implements OnInit {
 
-  constructor(private _service:RegistrationService) { }
   @Output() EmpDetail:EventEmitter<any> = new EventEmitter();
   @Input() Employee:any;
   count =0;
-  filter:any;
-  emp:any;
+  constructor
+  (
+    private _service:RegistrationService
+  ) {}
   ngOnInit() {
   }
   formEmpDetail(empDetail:any)
   {
     this.EmpDetail.emit(empDetail);
   } 
-
-  
-  
-
 }

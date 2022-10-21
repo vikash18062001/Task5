@@ -17,30 +17,40 @@ export class DrawerComponent implements OnInit {
   isMobileResolution:boolean;
   showDrawer = true;
   freqMap = new Map();
-  departements:any;
-  offices:any;
-  jobTitles:any;
-  constructor(private _empService:EmployeeServiceService,private _regService:RegistrationService,private _empDetail:EmployeeDetailsComponent,private _appService:ApplicationService) { 
-    this.isMobileResolution = this._appService.getMobileResolution();
-  }
+  departements: String []=[];
+  offices:String [] = [];
+  jobTitles:String [] = [];
   @Output() giveDetails:EventEmitter<any> = new EventEmitter();
   @Input() toShowDrawer:any;
+  constructor(
+    private _empService:EmployeeServiceService,
+    private _regService:RegistrationService,
+    private _empDetail:EmployeeDetailsComponent,
+    private _appService:ApplicationService) 
+    
+  { 
+    this.isMobileResolution = this._appService.getMobileResolution();
+  }
+
   ngOnInit(): void {
     this.departements = this._empService.getDepartements();
     this.offices = this._empService.getOffices();
     this.jobTitles = this._empService.getJobTitles();
     this.freqMap = this._regService.countNode;
   }
+
   ngOnChanges()
   {
     this.show();
     this.freqMap = this._regService.countNode;
   }
+
   filter(component:any ,dept:any)
   {
     var x = this._regService.searchFilter(component,dept);
     this.giveDetails.emit(x);
   }
+
   show()
   {
     this.left = this.left==0? -540 : 0;

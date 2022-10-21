@@ -1,7 +1,4 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { TitleStrategy } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { EmployeeServiceService } from './employee-service.service';
 
 @Injectable({
@@ -12,13 +9,11 @@ export class RegistrationService {
   allEmployee:Object[]= [];
   database = new Map();
   filterEmployee:Object[]=[];
-  filteredEmployee:any [] = [];
   data:any;
   countNode = new Map();
   constructor(private _empService:EmployeeServiceService) {
     this.initializeCountNode();
     this.countFreq();
-    // this.searchFilter("Vikas kumar","preferredName");
     this.initializeDB();
   }
   initializeDB()
@@ -105,7 +100,6 @@ export class RegistrationService {
   }
   searchBasedOnSearchFilter(value:any,basis:any)
   {
-
     var x =this.getAllEmployee();
     this.filterEmployee  =[];
     for(var y of x)
@@ -132,7 +126,6 @@ export class RegistrationService {
   }
   editEmployee(emp:any,name:any)
   {
-    console.log(emp);
     var x = this.getAllEmployee();
     var newList ;
     newList  = x.map((e:any)=>{
@@ -163,5 +156,4 @@ export class RegistrationService {
     this.initializeCountNode();
     this.countFreq();
   }
-
 }
