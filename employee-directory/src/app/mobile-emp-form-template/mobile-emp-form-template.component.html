@@ -4,7 +4,7 @@
        <div class="add-photo ">
            <div class="user-img ">
                <img [src]="imageUrl" *ngIf="imageUrl">
-               <img src="assets/data/user.png" *ngIf="!imageUrl">
+               <img src="assets/assets-image/user.png" *ngIf="!imageUrl">
            </div>
            <div class="position-relative">
                <span class="add-photo-label position-absolute" *ngIf="!imageUrl">Add Photo</span>
@@ -28,14 +28,14 @@
         <span class="d-flex flex-column input-fields">
             <label for="preferredName" >Preferred Name</label>
             <input type="text" [(ngModel)]="preferredName" placeholder="PreferredName"
-                id="preferredName" name="preferredName" disabled></span>
+                id="preferredName" name="preferredName"></span>
 
         <span class="d-flex flex-column input-fields">
             <label for="email" >Email</label>
             <input required [class.is-invalid]="emailField.invalid && emailField.touched" type="email"
                 #emailField="ngModel" [(ngModel)]="email" placeholder="Email" id="email" name="email">
         </span>
-        <div class="error text-danger " [class.d-none]="emailField.valid || emailField.untouched">Enter Your Email</div>
+        <div class="error text-danger " [class.d-none]="emailField.untouched || valid">Enter A Valid  Email</div>
 
         <span class="d-flex flex-column input-fields">
             <label for="skype" >skypeId</label>

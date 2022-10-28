@@ -3,7 +3,7 @@
     <div class="nav-items d-flex flex-column">
         <div class="user-name d-flex" *ngIf="isMobileResolution">
             <span id="greeting"><p id="welcome">Welcome,</p> Andrew Philips</span>
-            <img src="assets/data/user.png" id="profile-img">
+            <img src="assets/assets-image/user.png" id="profile-img">
         </div>
         <p id="dept">Departements</p>
             <p (click)="filter(component,'dept')"*ngFor ="let component of departements">{{component}} ({{freqMap.get(component)}})</p>
@@ -13,10 +13,12 @@
         </div>
         <p id="jobTitles">Job Titles</p>
         <div class="job-titles">
-            <p (click)="filter(component,'jobTitle')" *ngFor = "let component of jobTitles">{{component}} ({{freqMap.get(component)}})</p>
+            <p (click)="filter(component,'jobTitle')" *ngFor = "let component of jobTitles | slice:0:end">{{component}} ({{freqMap.get(component)}})</p>
+            <p id="viewMore" (click)="viewMore()">{{MoreOrLess}}</p>
         </div>
+
         <footer class="footer d-flex flex-column " *ngIf="isMobileResolution">
-            <img src="assets/data/saketa-logo.png" id="logo"  >
+            <img src="assets/assets-image/saketa-logo.png" id="logo"  >
             <p class="text">Employee Directory</p>
         </footer>
     </div>

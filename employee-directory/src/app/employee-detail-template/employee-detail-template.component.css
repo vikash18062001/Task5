@@ -4,6 +4,11 @@ p{
 .user-details>*
 {
     margin: 3% 0;
+    
+}
+.user-details
+{
+    flex:1;
 }
 #user-img
 {

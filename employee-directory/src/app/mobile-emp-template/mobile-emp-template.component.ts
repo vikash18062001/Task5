@@ -9,22 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MobileEmpTemplateComponent implements OnInit {
   name !: String;
-  @Output() giveForm:EventEmitter<String> = new EventEmitter();
-  @Input() emp:any;
+  @Output() giveForm: EventEmitter<String> = new EventEmitter();
+  @Input() emp: any;
   imageUrl !: String;
   constructor() { }
 
   ngOnInit(): void {
     this.updateList();
   }
-  updateList()
-  {
+  updateList(): void {
     this.imageUrl = this.emp.imageurl;
-    this.name=this.emp.preferredName;
+    this.name = this.emp.preferredName;
   }
-  showDetail(emp:any)
-  {
-    var search =(emp.currentTarget.children[1].innerText);
+  showDetail(emp: any): void {
+    var search = (emp.currentTarget.children[1].innerText);
     this.giveForm.emit(search);
   }
 

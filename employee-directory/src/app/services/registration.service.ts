@@ -49,7 +49,8 @@ export class RegistrationService {
   registerNewEmployee(newEmployee:any)
   {
     var currentData =this.getAllEmployee();
-    newEmployee.preferredName=newEmployee.firstname+' '+newEmployee.lastName;
+    if(newEmployee.preferredName === undefined)
+      newEmployee.preferredName=newEmployee.firstname+' '+newEmployee.lastName;
     
     if(currentData)
     {
@@ -91,7 +92,7 @@ export class RegistrationService {
     this.filterEmployee  =[];
     for(var y of x)
     {
-      if(y[basis].toLowerCase().indexOf(value.toLowerCase())==0)
+      if(y[this.database.get(basis)].toLowerCase().indexOf(value.toLowerCase())==0)
         {
           this.filterEmployee.push(y);
         }
@@ -131,7 +132,8 @@ export class RegistrationService {
     newList  = x.map((e:any)=>{
       if(e['preferredName']==name)
       {
-        emp.preferredName = emp.firstname + " " + emp.lastName;
+        if(emp.preferredName==='')
+        emp.preferredName = emp.firstname + ' ' + emp.lastName;
         return emp;
       }
       else

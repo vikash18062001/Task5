@@ -1,8 +1,8 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApplicationService } from '../application.service';
-import { RegistrationService } from '../registration.service';
+import { ApplicationService } from '../services/application.service';
+import { RegistrationService } from '../services/registration.service';
 
 @Component({
   selector: 'app-filters',
@@ -11,13 +11,13 @@ import { RegistrationService } from '../registration.service';
 })
 export class FiltersComponent implements OnInit {
   @Input() empToShow !: Object;
-  isMobileResolution : boolean;
-  selectedFilter : String;
+  isMobileResolution !: boolean;
+  selectedFilter ='Preferred Name';
   empFormDetail !: Object;
   searchKeyWord !: String;
-  toShow=false;
-  visible=false;
-  filtersName =[
+  toShow = false;
+  visible = false;
+  filtersName = [
     'Preferred Name',
     'First Name',
     'Last Name',
@@ -29,77 +29,66 @@ export class FiltersComponent implements OnInit {
     'Phone Number'
   ]
   previousValue !: String;
-  filtersByName:String[]=[];
+  filtersByName: String[] = [];
   constructor(
-    public _regService:RegistrationService,
-    public _appService:ApplicationService,
-    public router:Router
-    ) {
-    this.isMobileResolution = this._appService.getMobileResolution();
-    this.selectedFilter="Preferred Name";
-    }
-  
+    public _regService: RegistrationService,
+    public _appService: ApplicationService,
+    public router: Router
+  ) {
+    
+  }
+
   ngOnInit(): void {
-    for(let i=0;i<26;i++)
-    {
-      this.filtersByName.push(String.fromCharCode(i+65));
+    this.isMobileResolution = this._appService.getMobileResolution();
+    this.selectedFilter = "Preferred Name";
+    for (let i = 0; i < 26; i++) {
+      this.filtersByName.push(String.fromCharCode(i + 65));
     }
   }
-  addEmployee()
-  {
+  addEmployee(): void {
     this.empFormDetail = '';
-    this.toShow= !this.toShow;
+    this.toShow = !this.toShow;
   }
-  addEmployeeVisible()
-  {
+  addEmployeeVisible(): boolean {
     return false;
   }
-  filter(value:String,basis:String)
-  {
-    if(this.previousValue===value)
-    {
+  filter(value: String, basis: String): void {
+    if (this.previousValue === value) {
       var y = this._regService.getAllEmployee();
       this.empToShow = y;
-      this.previousValue='';
+      this.previousValue = '';
     }
-    else
-    {
-      var x =this._regService.searchFilterByFirstName(value,basis);
+    else {
+      var x = this._regService.searchFilterByFirstName(value, this.selectedFilter);
       this.empToShow = x;
-      this.previousValue=value;
+      this.previousValue = value;
     }
   }
-  onChange()
-  {
-    var x = this._regService.searchBasedOnSearchFilter(this.searchKeyWord,this.selectedFilter);
+  onChange() {
+    var x = this._regService.searchBasedOnSearchFilter(this.searchKeyWord, this.selectedFilter);
     this.empToShow = x;
   }
-  onFilterChange(e:any)
-  {
+  onFilterChange(e: any): void {
     this.selectedFilter = e.target.value;
     this.clear();
   }
-  clear()
-  {
-    this.searchKeyWord="";
+  clear(): void {
+    this.searchKeyWord = "";
     this.empToShow = this._regService.getAllEmployee();
   }
-  newEmpRegister()
-  {
+  newEmpRegister(): void {
     this.empToShow = this._regService.getAllEmployee();
   }
-  sendFormData(emp:any)
-  {
+  sendFormData(emp: any): boolean {
     this.empFormDetail = emp;
     this.toShow = !this.toShow;
     return true;
   }
-  formDetail()
-  {
+  formDetail(): Object {
     return this.empFormDetail;
   }
-  hideForm()
-  {
+  hideForm(): void {
     this.toShow = false;
+    this.empToShow = this._regService.getAllEmployee();
   }
 }

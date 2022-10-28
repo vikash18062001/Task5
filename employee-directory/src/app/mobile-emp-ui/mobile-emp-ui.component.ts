@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FiltersComponent } from '../filters/filters.component';
 import { Router } from '@angular/router';
-import { RegistrationService } from '../registration.service';
-import { ApplicationService } from '../application.service';
+import { RegistrationService } from '../services/registration.service';
+import { ApplicationService } from '../services/application.service';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
@@ -12,123 +12,105 @@ import { Input } from '@angular/core';
   styleUrls: ['./mobile-emp-ui.component.css'],
 })
 
-export class MobileEmpUiComponent extends FiltersComponent implements OnInit{
-  toShowForm=false;
-  toShowFormTwo=true;
-  toDisplay=false;
-  deleteMobileFirstScreen=true;
-  showForm =false ;
-  empDetails:undefined;
-  formShow=true;
-  showFilter  =false;
-  dropDownFilter:String[] = [];
-  filters :String[] =[];
-  employee :any =[];
-  @Output() showdrawer:EventEmitter<boolean> = new EventEmitter();
+export class MobileEmpUiComponent extends FiltersComponent implements OnInit {
+  toShowForm = false;
+  toShowFormTwo = true;
+  toDisplay = false;
+  deleteMobileFirstScreen = true;
+  showForm = false;
+  empDetails: undefined;
+  formShow = true;
+  showFilter = false;
+  dropDownFilter: String[] = [];
+  filters: String[] = [];
+  employee: any = [];
+  @Output() showdrawer: EventEmitter<boolean> = new EventEmitter();
   @Input() filteredEmployee !: Object;
   constructor(
-    public route:Router,
-    public reg:RegistrationService,
-    public  app:ApplicationService) { 
-    super(reg,app,route);
+    public route: Router,
+    public reg: RegistrationService,
+    public app: ApplicationService) {
+    super(reg, app, route);
   }
   override ngOnInit(): void {
     this.getAllEmp();
     this.getFilters();
     this.dropDownFilter = this.filtersName;
   }
-  ngOnChanges()
-  {
+  ngOnChanges(): void {
     this.employee = this.filteredEmployee;
   }
-  getAllEmp()
-  {
+  getAllEmp(): void {
     this.employee = this._regService.getAllEmployee();
   }
-  getFilters()
-  {
-    for(let i=0;i<26;i++)
-    {
-      this.filters.push(String.fromCharCode(i+65));
+  getFilters(): void {
+    for (let i = 0; i < 26; i++) {
+      this.filters.push(String.fromCharCode(i + 65));
     }
     this.filters.push('#');
   }
-  showfilter()
-  {
+  showfilter(): void {
     this.showFilter = !this.showFilter;
   }
-  showDrawer()
-  {
+  showDrawer(): void {
     this.showdrawer.emit();
   }
-  onChangeMobileUi() //done
+  onChangeMobileUi(): void 
   {
     this.onChange();
     this.employee = this.empToShow;
   }
-  filterByChar(x:any)
-  {
-    if(x=='#')
+  filterByChar(x: any): void {
+    if (x == '#')
       this.employee = this._regService.getAllEmployee();
-    else
-    {
-    this.filter(x,'preferredName');
-    this.employee = this.empToShow;
+    else {
+      this.filter(x, 'preferredName');
+      this.employee = this.empToShow;
     }
   }
-  getDetails(e:any)
-  {
+  getDetails(e: any): void {
     var formDetail = this._regService.getEmpDetail(e);
     this.empDetails = formDetail;
-    this.showForm =! this.showForm;
+    this.showForm = !this.showForm;
   }
-  deleteFun()
-  {
+  deleteFun(): void {
     this.employee = this._regService.getAllEmployee();
-    this.redoIt(false,false);
+    this.redoIt(false, false);
   }
   override addEmployee(): void {
     this.toShowFormTwo = !this.toShowFormTwo;
     this.toDisplay = !this.toDisplay;
   }
-  newEmpRegistered(isEdit:any)
-  {
+  newEmpRegistered(isEdit: any): void {
     this.employee = this._regService.getAllEmployee();
-    this.redoIt(isEdit,true);
+    this.redoIt(isEdit, true);
   }
-  editFun(emp:any)
-  {
+  editFun(emp: any): void {
     this.toDisplay = true;
     this.empFormDetail = emp;
   }
-  deleteOrRedoFirstPage(isEdit:any,newEmp:any)
-  {
-    if(isEdit)
-    {
+  deleteOrRedoFirstPage(isEdit: any, newEmp: any): void {
+    if (isEdit) {
       this.toShowFormTwo = true;
     }
-    else{
-      this.showForm=false;
+    else {
+      this.showForm = false;
     }
-    if(newEmp)
-    {
+    if (newEmp) {
       this.toDisplay = !this.toDisplay;
     }
   }
-  redoIt(isEdit:any,newEmp:any)
-  {
-    this.deleteOrRedoFirstPage(isEdit,newEmp);
+  redoIt(isEdit: any, newEmp: any): void {
+    this.deleteOrRedoFirstPage(isEdit, newEmp);
   }
-  cancelForm(e:any)
-  {
-    if(e==undefined)
-    {
-    this.toShowFormTwo=!this.toShowFormTwo;
-    this.toDisplay = !this.toDisplay;
+  cancelForm(e: any): void {
+    if (e == undefined) {
+      this.toShowFormTwo = !this.toShowFormTwo;
+      this.toDisplay = !this.toDisplay;
     }
-    else{
-      this.toShowFormTwo=true;
-      this.showForm= false;
+    else {
+      this.toShowFormTwo = true;
+      this.showForm = false;
       this.toDisplay = !this.toDisplay;
 
     }

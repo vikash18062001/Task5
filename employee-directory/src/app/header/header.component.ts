@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { ApplicationService } from '../application.service';
-import { RegistrationService } from '../registration.service';
+import { ApplicationService } from '../services/application.service';
+import { RegistrationService } from '../services/registration.service';
 import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-header',
@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit ,OnDestroy{
-  isMobileResolution:boolean;
+  isMobileResolution !: boolean;
   mediaSub:Subscription | undefined;
   show=false;
   getEmpDetails!:Object;
@@ -16,23 +16,23 @@ export class HeaderComponent implements OnInit ,OnDestroy{
   constructor(
     private _regService:RegistrationService,
     private _appService:ApplicationService) { 
-    this.isMobileResolution = this._appService.getMobileResolution();
   }
   ngOnInit(): void {
+    this.isMobileResolution = this._appService.getMobileResolution();
     this.getEmpDetails = this._regService.getAllEmployee();
   }
   ngOnDestroy(): void {
       
   }
-  empDetails(emp:Object)
+  empDetails(emp:Object): void
   {
     this.getEmpDetails = emp;
   }
-  loadPage()
+  loadPage() :void 
   {
     window.location.reload();
   }
-  showdraw(bool:boolean)
+  showdraw(bool:boolean) : void
   {
     this.show = !this.show;
   }

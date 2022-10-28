@@ -1,82 +1,91 @@
-#dept,#offices,#jobTitles
-{
+#dept,
+#offices,
+#jobTitles {
     font-weight: 500;
     font-size: 1rem;
     margin: 3% 1%;
 }
-p{
-    margin:1% 2%;
+
+#viewMore {
+    color: rgb(18, 156, 235);
+}
+
+p {
+    margin: 1% 2%;
     font-size: 0.9rem;
     font-weight: 200;
     cursor: pointer;
 
 }
-#greeting
-{
+
+#greeting {
     font-size: 150%;
     line-height: 140%;
     flex: 1 0 auto;
 }
-#profile-img
-{
+
+#profile-img {
     width: 24%;
     padding-right: 3%;
 }
-#welcome
-{
+
+#welcome {
     color: #00B3F8;
     font-size: 120%;
-    margin:0;
+    margin: 0;
     padding: 0;
 }
-#logo
-{
+
+#logo {
     width: 50%;
     margin-top: auto;
     align-items: center;
 }
-.text
-{
+
+.text {
     color: #00B3F8;
     margin-top: 2%;
     font-weight: 300;
 }
-footer{
+
+footer {
     margin-top: auto;
     margin-bottom: 2%;
     align-items: center;
 }
+
 @media only screen and (max-width:768px) {
-    .sidenav-bar
-    {
+    .sidenav-bar {
         height: 100%;
         width: 100vw;
         position: fixed;
         transition: all 1s ease;
         overflow: scroll;
         top: 0;
-    } 
-    .nav-items
-    {
+    }
+
+    .nav-items {
         padding-left: 4%;
         height: 100%;
         width: 65%;
         background-color: white;
     }
-    .bi
-    {
+
+    .bi {
         color: red;
     }
-    .visible
-    {
+
+    .visible {
         width: 100vw;
-        background-color: rgba(0,0,0,0.3);
+        background-color: rgba(0, 0, 0, 0.3);
         transition: all 1s ease;
     }
-    #dept,#offices,#jobTitles
-    {
+
+    #dept,
+    #offices,
+    #jobTitles {
         margin-top: 12%;
     }
-    
-    
+
+
 }

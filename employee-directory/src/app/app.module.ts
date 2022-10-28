@@ -4,14 +4,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { DrawerComponent } from './drawer/drawer.component';
+import { DrawerComponent } from './drawer/drawer.component'; 
 import { FiltersComponent } from './filters/filters.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { EmployeeDetailTemplateComponent } from './employee-detail-template/employee-detail-template.component';
 import { FormTemplateComponent } from './form-template/form-template.component';
-import { EmployeeServiceService } from './employee-service.service';
+import { EmployeeServiceService } from './services/employee-service.service';
 import { FormsModule } from '@angular/forms';
-import { RegistrationService } from './registration.service';
+import { RegistrationService } from './services/registration.service';
 import { MobileEmpUiComponent } from './mobile-emp-ui/mobile-emp-ui.component';
 import { MobileEmpTemplateComponent } from './mobile-emp-template/mobile-emp-template.component';
 import { MobileFormShowComponent } from './mobile-form-show/mobile-form-show.component';
